@@ -1,0 +1,29 @@
+<div id="course_form">
+    <div id="form_head">{{courseUpdatde}}
+        <span style="float: right;">
+            <mat-icon style=" width:auto; height:auto; font-size:35px; transform: rotate(45deg);cursor: pointer;"
+                mat-dialog-close>add_circle</mat-icon>
+        </span>
+    </div>
+    <form [formGroup]="courseForm">
+        <div id="main_form">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Course Name</mat-label>
+                <input matInput required formControlName="course_name">
+            </mat-form-field>
+
+
+            <mat-form-field appearance="fill">
+                <mat-label>Description</mat-label>
+                <textarea matInput class="input_box" formControlName="course_desc"></textarea>
+            </mat-form-field><br><br>
+
+            <input type="file" id="course_imgs"  (change)="onFileChanged($event)"  formControlName="course_img">
+
+            <input type="number" readonly [ngModel]="admin" formControlName="admin_id_fk" hidden>
+            <input type="number" formControlName="course_id" hidden>
+        </div>
+    </form>
+    <button mat-raised-button color="warn" (click)="reset()">Reset</button>
+    <button mat-raised-button color="primary" style="margin-left: 15px;" (click)="addcourse()" [disabled]="!courseForm.valid">{{actionBtn}}</button>
+</div>

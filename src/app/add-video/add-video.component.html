@@ -1,0 +1,44 @@
+<div id="topic_form">
+    <div id="form_head">{{Updatevideo}}
+        <span style="float: right;">
+            <mat-icon style=" width:auto; height:auto; font-size:35px; transform: rotate(45deg);cursor: pointer;"
+                mat-dialog-close>add_circle</mat-icon>
+        </span>
+    </div>
+
+    <form [formGroup]="addvideoForm">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Select Course</mat-label>
+            <mat-select disableRipple formControlName="course_id_fk" (valueChange)="getCourse($event)">
+              <mat-option *ngFor="let course of course_data" [value]="course.course_id">{{course.course_name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Select Topic</mat-label>
+            <mat-select disableRipple formControlName="topics_id_fk">
+              <mat-option *ngFor="let topic of topicfilter_data"
+                [value]="topic.topic_id">{{topic.topics_name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Video Title </mat-label>
+            <input matInput required formControlName="video_title">
+        </mat-form-field><br>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Video URL</mat-label>
+            <input matInput required formControlName="video_url">
+        </mat-form-field><br>
+
+        <input type="number" [ngModel]="admin" formControlName="admin_id_fk" hidden>
+        <input type="number" formControlName="video_id" hidden>
+
+
+    </form>
+
+    <button mat-button style="background-color: orangered; color: white;margin-left: 90px;" (click)="resetform()">Reset</button>
+    <button mat-button style="background-color: rgb(68, 110, 215); color: white;margin-left: 20px;" (click)="addvideo()" [disabled]="!addvideoForm.valid">{{actionBtn}}</button>
+</div>

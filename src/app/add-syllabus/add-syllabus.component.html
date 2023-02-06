@@ -1,0 +1,42 @@
+<div id="course_form">
+    <div id="form_head">AddSyllabus
+        <span style="float: right;">
+            <mat-icon style=" width:auto; height:auto; font-size:35px; transform: rotate(45deg);cursor: pointer;"
+                mat-dialog-close>add_circle</mat-icon>
+        </span>
+    </div>
+    <div id="main_form">
+        <form [formGroup]="syllabusForm">
+
+            <mat-form-field appearance="fill">
+                <mat-label>Select University</mat-label>
+                <mat-select disableRipple formControlName="university_id_fk">
+                    <mat-option *ngFor="let uiversity of university_data"
+                        [value]="uiversity.university_id">{{uiversity.university_name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Select Course</mat-label>
+                <mat-select disableRipple formControlName="course_name">
+                    <mat-option value="bca">B.C.A.</mat-option>
+                    <mat-option value="mca">M.C.A.</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Syllabus Description</mat-label>
+                <textarea matInput class="input_box" formControlName="syllabus_desc"></textarea>
+            </mat-form-field><br><br>
+
+            <input type="file" id="course_imgs" (change)="onFileChanged($event)" formControlName="syllabus_file">
+
+            <input type="number" readonly [ngModel]="admin" formControlName="admin_id_fk" hidden>
+            <input type="number" formControlName="syllabus_id" hidden>
+
+        </form>
+    </div>
+
+    <button mat-raised-button color="warn" (click)="reset()">Reset</button>
+    <button mat-raised-button color="primary" style="margin-left: 15px;" (click)="addsyllabus()">Submit</button>
+</div>

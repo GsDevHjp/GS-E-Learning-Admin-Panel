@@ -1,0 +1,98 @@
+/***************css for home layout****************/
+.container-fluid {
+    padding: 0px;
+    cursor: default;
+}
+
+/*****************css for home side navbar layout start******************/
+
+mat-sidenav{
+    width: 250px;
+    height: 100%;
+    background-color: rgb(58, 62, 70);
+}
+
+mat-sidenav-content{
+    height: 100vh;
+    background-color: whitesmoke;
+}
+
+/***********************************css for home side  navbar layout end*******************/
+/*********************************css for header start************************************/
+
+mat-toolbar {
+    justify-content: space-between;
+    background-color: rgb(58, 62, 70);
+}
+mat-icon{
+    width: 30px;
+    height: 30px;
+    font-size: 30px;
+    cursor: pointer;
+    color: whitesmoke;
+}
+
+#dash_header_admin{
+    width: 200px;
+    height: 100%;
+}
+
+#dash_header_admin span {
+    line-height: 60px;
+    font-size: 16px;
+    color: whitesmoke;
+    letter-spacing: 1px;
+    margin-left: 60px;
+    float: left;
+}
+
+
+#admin_logo{
+    width: 40px;
+    height: 40px;
+    float: right;
+    margin: 10px 0px;
+    border-radius: 50%;
+    background-color: whitesmoke;
+}
+
+#admin_logo:hover{
+    cursor: pointer;
+}
+
+#admin_logo img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+/*************************css for header end**********************************/
+/*************************css for main start*********************************/
+.main{
+    padding: 5px;
+}
+
+/********************************css for main end*****************************/
+/*******************************css for home layout end*********************/
+
+/* media query srtart from here */
+
+@media(max-width:500px) and (min-width:100px){
+    mat-sidenav{
+        width: 170px;
+    }
+    #dash_header_admin span{
+        font-size: 14px;
+        margin-left: 4px;
+    }
+    mat-icon{
+        font-size: 22px;
+        margin-right: 2px;
+    }
+    #admin_logo{
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+    }
+}

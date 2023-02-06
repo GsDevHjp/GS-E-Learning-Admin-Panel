@@ -1,0 +1,33 @@
+<div id="login_page_box">
+    <div id="login_page">
+        <div id="form_head">Admin Login</div>
+        <div id="image">
+            <img src="assets/login.svg">
+        </div>
+        <div id="form">
+            <mat-icon id="user_icon">account_circle</mat-icon>
+            <mat-form-field appearance="fill" id="name_input">
+                <mat-label>User Name</mat-label>
+                <input matInput>
+            </mat-form-field>
+
+            <mat-icon id="user_password">lock</mat-icon>
+            <mat-form-field appearance="fill">
+                <mat-label> Enter your password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+              </mat-form-field>
+              <p>
+                <button mat-button (click)="login()"  routerLink="/home">Login</button>
+              </p>
+              <span>Forgot Password?</span>
+
+        </div>
+    </div>
+    <div id="company_name">
+        <span>Developed by : <a href="https://www.greensoft.net.in" target="_blank"> Green Soft</a></span>
+        <p>Version : 0.01</p>
+    </div>
+</div>

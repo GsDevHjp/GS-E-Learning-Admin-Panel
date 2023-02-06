@@ -1,0 +1,65 @@
+<div id="ppt_notes_table">
+  <div id="manage_ppt">
+    <div id="manage_ppt_title">Manage PPT Notes</div>
+    <div id="add_ppt_icon">
+      <mat-icon (click)="addppt()">add_circle</mat-icon>
+    </div>
+  </div>
+  <div id="number_of_ppt_notes">
+    <div id="for_total_number">Total : {{pptnotesdata}}</div>
+    <div id="search_box">
+      <input matInput (keyup)="applyFilter($event)" type="text" placeholder="Search" #input>
+    </div>
+  </div>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+
+      <!-- SL No-->
+      <ng-container matColumnDef="ppt_notes_id">
+        <th mat-header-cell *matHeaderCellDef> SL No. </th>
+        <td mat-cell *matCellDef="let element;let i= index;"> {{(paginatorRef.pageIndex * paginatorRef.
+          pageSize)+(i+1)}} </td>
+      </ng-container>
+
+      <!-- Course Name -->
+      <ng-container matColumnDef="course_id_fk">
+        <th mat-header-cell *matHeaderCellDef> Course Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.course_id_fk}} </td>
+      </ng-container>
+
+      <!-- topic Name -->
+      <ng-container matColumnDef="topics_id_fk">
+        <th mat-header-cell *matHeaderCellDef> Topic Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.topics_id_fk}} </td>
+      </ng-container>
+
+      <!-- PPT Notes -->
+      <ng-container matColumnDef="ppt_notes_name">
+        <th mat-header-cell *matHeaderCellDef> PPT File Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.ppt_notes_name}} </td>
+      </ng-container>
+
+      <!-- File Name -->
+      <ng-container matColumnDef="ppt_file">
+        <th mat-header-cell *matHeaderCellDef> PPT File </th>
+        <td mat-cell *matCellDef="let element"><a href="{{imageUrl}}/{{element.ppt_file}}">
+            <mat-icon>file_copy</mat-icon></a></td>
+      </ng-container>
+
+      <!-- Delete Notification -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-icon (click)="editppt(row)">create</mat-icon> <mat-icon>delete</mat-icon></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator #paginatorRef [pageSizeOptions]="[10, 15,20]" showFirstLastButtons
+      aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+
+</div>

@@ -1,0 +1,74 @@
+<div id="topic_form">
+  <div id="form_head">{{contentUpdate}}
+    <span style="float: right;">
+      <mat-icon style=" width:auto; height:auto; font-size:35px; transform: rotate(45deg);cursor: pointer;"
+        mat-dialog-close>add_circle</mat-icon>
+    </span>
+  </div>
+  <form [formGroup]="contentForm">
+    <div id="main_form">
+      <div id="main_form_1">
+        <mat-form-field appearance="outline" style="margin-top: 15px;">
+          <mat-label>Select Course</mat-label>
+          <mat-select disableRipple formControlName="courses_id_fk" (valueChange)="getCourse($event)">
+            <mat-option *ngFor="let course of course_data"
+              [value]="course.course_id">{{course.course_name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="margin-top: 15px;">
+          <mat-label>Select Topic</mat-label>
+          <mat-select disableRipple formControlName="topics_id_fk">
+            <mat-option *ngFor="let topic of topicfilter_data"
+              [value]="topic.topic_id">{{topic.topics_name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Topic Heading</mat-label>
+          <input matInput formControlName="content_heading">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="margin-top: 5px;">
+          <mat-label >English Content</mat-label>
+          <textarea matInput class="input_box" formControlName="englishcontent"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Hindi Content</mat-label>
+          <textarea matInput class="input_box" formControlName="hindicontent"></textarea>
+        </mat-form-field>
+
+      </div>
+
+      <div id="main_form_2">
+
+        <mat-form-field appearance="outline" style="margin-top: 5px;">
+          <mat-label>Urdu Content</mat-label>
+          <textarea matInput class="input_box" formControlName="urducontent"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="margin-top: 5px;">
+          <mat-label>Hinglish Content</mat-label>
+          <textarea matInput class="input_box" formControlName="hinglishcontent"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline" style="margin-top: 8px;">
+          <mat-label>YouTube Link (URL)</mat-label>
+          <input matInput formControlName="youtubelink">
+        </mat-form-field>
+
+        <input type="file" style="width: 100%; margin-top: 10px; padding: 12px 5px;margin-left: 12px;"
+          (change)="ImageUpload($event)" formControlName="content_image">
+
+        <input type="number" [ngModel]="admin" formControlName="admin_id_fk" hidden>
+        <input type="number" formControlName="content_id" hidden>
+
+      </div>
+    </div>
+  </form>
+  <button mat-raised-button color="warn" style="margin-top:100px;margin-left: -50px;">Reset</button>
+  <button mat-raised-button color="primary" style="margin-left: 10px; margin-top:100px;"
+    (click)="addtopic()" [disabled]="!contentForm">{{actionBtn}}</button>
+
+</div>

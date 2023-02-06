@@ -1,0 +1,89 @@
+#syllabus_table {
+    width: 100%;
+    height: auto;
+  }
+  
+  table {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  tr:nth-child(odd){
+    height: 40px;
+    font-family: cambria;
+    font-size: 16px;
+  }
+  
+  tr:nth-child(even){
+    height: 40px;
+  }
+  
+  #manage_syllabus {
+    width: 100%;
+    height: 40px;
+    color: white;
+    background-color: rgb(58, 62, 70);
+  }
+  
+  #manage_syllabus_title {
+    width: 25%;
+    height: 100%;
+    font-size: 16px;
+    padding: 10px;
+    float: left;
+    font-style: italic;
+  }
+  
+  #add_syllabus_icon {
+    width: 3.5%;
+    height: 100%;
+    float: right;
+  }
+  
+  #add_syllabus_icon mat-icon {
+    width: auto;
+    height: auto;
+    font-size: 25px;
+    cursor: pointer;
+    padding: 8px;
+  }
+  
+  #number_of_syllabus {
+    width: 100%;
+    height: 35px;
+  }
+  
+  #for_total_number {
+    width: 20%;
+    height: 100%;
+    float: left;
+    font-size: 16px;
+    padding: 10px;
+    font-style: italic;
+  }
+  
+  #search_box {
+    width: auto;
+    height: 100%;
+    margin-top: 4px;
+    float: right;
+  }
+  
+  #search_box input {
+    width: 250px;
+    height: 99%;
+    font-size: 18px;
+    border: none;
+    border-bottom: 2px solid black;
+    background-color: whitesmoke;
+    outline: none;
+  }
+  
+  textarea {
+    border: none;
+  }
+  
+  
+  tr:hover {
+    background-color: rgb(240, 240, 240);
+  }

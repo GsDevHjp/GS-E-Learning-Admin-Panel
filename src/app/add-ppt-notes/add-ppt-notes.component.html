@@ -1,0 +1,43 @@
+<div id="topic_form">
+    <div id="form_head">{{pptUpdate}}
+        <span style="float: right;">
+            <mat-icon style=" width:auto; height:auto; font-size:35px; transform: rotate(45deg);cursor: pointer;"
+                mat-dialog-close>add_circle</mat-icon>
+        </span>
+    </div>
+
+    <form [formGroup]="addpptForm">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Select Course</mat-label>
+            <mat-select disableRipple formControlName="course_id_fk" (valueChange)="getCourse($event)">
+                <mat-option *ngFor="let course of course_data"
+                    [value]="course.course_id">{{course.course_name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Select Topic</mat-label>
+            <mat-select disableRipple formControlName="topics_id_fk">
+              <mat-option *ngFor="let topic of topicfilter_data"
+                [value]="topic.topic_id">{{topic.topics_name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>PPT File Name</mat-label>
+            <input matInput required formControlName="ppt_notes_name">
+        </mat-form-field><br>
+
+        <input type="file" id="ppt_files" (change)="onFileChanged($event)" formControlName="ppt_file">
+
+        <input type="number" [ngModel]="admin" formControlName="admin_id_fk" hidden>
+        <input type="number" formControlName="ppt_notes_id" hidden>
+
+
+    </form>
+
+    <button mat-button style="background-color: orangered; color: white;margin-left: 90px;" (click)="reset()">Reset</button>
+    <button mat-button style="background-color: rgb(68, 110, 215); color: white;margin-left: 20px;"
+        (click)="addPpt()" [disabled]="!addpptForm.value">{{actionBtn}}</button>
+</div>

@@ -1,0 +1,29 @@
+#topic_form{
+    width: 700px;
+    height: 500px;
+}
+#form_head{
+    font-size: 25px;
+    height: 30px;
+    color: rgb(65, 64, 64);
+}
+#main_form{
+    width: 100%;
+    height: calc(100% - 60px);
+}
+#main_form_1{
+    width: 49%;
+    height: 100%;
+    float: left;
+}
+#main_form_2{
+    width: 49%;
+    height: 100%;
+    float:right;
+}
+.mat-form-field{
+    width: 100%;
+}
+button{
+    float: left;
+}
