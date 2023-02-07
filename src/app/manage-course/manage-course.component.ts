@@ -3,17 +3,17 @@ import { ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { CourseFormComponent } from '../course-form/course-form.component';
 import { ApiService } from '../services/api.service';
 import { MatSort } from '@angular/material/sort';
+import { AddCourseComponent } from '../add-course/add-course.component';
 
 @Component({
-  selector: 'app-m-course',
-  templateUrl: './m-course.component.html',
-  styleUrls: ['./m-course.component.css']
+  selector: 'app-manage-course',
+  templateUrl: './manage-course.component.html',
+  styleUrls: ['./manage-course.component.css']
 })
-export class MCourseComponent implements OnInit {
-
+export class ManageCourseComponent implements OnInit {
+      
   imageUrl: string = 'https://greensoft.net.in/gselearning/assets/'
   displayedColumns: string[] = ['course_id', 'course_name', 'course_desc', 'course_img', 'action'];
   dataSource = new MatTableDataSource<any>;
@@ -21,6 +21,7 @@ export class MCourseComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+
 
   constructor(
     private dialog: MatDialog,
@@ -37,10 +38,9 @@ export class MCourseComponent implements OnInit {
       }
     )
   }
+   /////////////// for table search////////////////////
 
-  /////////////// for table search////////////////////
-
-  applyFilter(event: Event) {
+   applyFilter(event: Event) {
 
     const filterValue = (event.target as HTMLInputElement).value
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
@@ -54,14 +54,14 @@ export class MCourseComponent implements OnInit {
   ////////// For opening form onclick plus icon////////////
 
   openCourse() {
-    this.dialog.open(CourseFormComponent), {
+    this.dialog.open(AddCourseComponent), {
 
     }
 
   }
 
   editCourse(row: any) {
-    this.dialog.open(CourseFormComponent, {
+    this.dialog.open(AddCourseComponent, {
       data: row
     })
   }
