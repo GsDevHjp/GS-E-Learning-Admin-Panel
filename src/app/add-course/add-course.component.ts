@@ -5,13 +5,12 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { __values } from 'tslib';
 
-
 @Component({
-  selector: 'app-course-form',
-  templateUrl: './course-form.component.html',
-  styleUrls: ['./course-form.component.css']
+  selector: 'app-add-course',
+  templateUrl: './add-course.component.html',
+  styleUrls: ['./add-course.component.css']
 })
-export class CourseFormComponent implements OnInit {
+export class AddCourseComponent implements OnInit {
   admin = 1;
   courseForm !: FormGroup;
   upload: any;
@@ -24,7 +23,7 @@ export class CourseFormComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public editdata: any,
     private FormBuilder: FormBuilder,
-    private matref: MatDialogRef<CourseFormComponent>,
+    private matref: MatDialogRef<AddCourseComponent>,
     private service: ApiService,
     private route: Router
   ) {
@@ -32,7 +31,7 @@ export class CourseFormComponent implements OnInit {
     this.route.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     }
-  }
+   }
 
   ngOnInit(): void {
     this.courseForm = this.FormBuilder.group({
@@ -55,8 +54,6 @@ export class CourseFormComponent implements OnInit {
 
     }
   }
-
-
   addcourse() {
     if (!this.editdata) {
       const formdata = new FormData();
@@ -116,3 +113,5 @@ export class CourseFormComponent implements OnInit {
   }
 
 }
+
+

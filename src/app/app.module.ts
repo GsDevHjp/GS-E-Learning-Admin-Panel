@@ -11,17 +11,11 @@ import { NgxUiLoaderHttpModule, NgxUiLoaderModule, NgxUiLoaderRouterModule } fro
 //////////////// Component in this website///////////////////////
 
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { MCourseComponent } from './m-course/m-course.component';
 import { NotificationComponent } from './notification/notification.component';
-import { CourseFormComponent } from './course-form/course-form.component';
 import { NotificationFormComponent } from './notification-form/notification-form.component';
-import { TopicFormComponent } from './topic-form/topic-form.component';
-import { MTopicsComponent } from './m-topics/m-topics.component';
 import { HomeComponent } from './home/home.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { EnquiryComponent } from './enquiry/enquiry.component';
-import { AddTopicComponent } from './add-topic/add-topic.component';
-import { AddTopicFormComponent } from './add-topic-form/add-topic-form.component';
 import { ManagePptNotesComponent } from './manage-ppt-notes/manage-ppt-notes.component';
 import { AddPptNotesComponent } from './add-ppt-notes/add-ppt-notes.component';
 import { ManagePdfNotesComponent } from './manage-pdf-notes/manage-pdf-notes.component';
@@ -59,6 +53,12 @@ import { VideoComponent } from './video/video.component';
 import { AddVideoComponent } from './add-video/add-video.component';
 import { ImgSliderComponent } from './img-slider/img-slider.component';
 import { AddSliderComponent } from './add-slider/add-slider.component';
+import { ManageCourseComponent } from './manage-course/manage-course.component';
+import { AddCourseComponent } from './add-course/add-course.component';
+import { ManageTopicComponent } from './manage-topic/manage-topic.component';
+import { AddTopicComponent } from './add-topic/add-topic.component';
+import { ManageContentComponent } from './manage-content/manage-content.component';
+import { AddContentComponent } from './add-content/add-content.component';
 
 
 
@@ -68,16 +68,10 @@ import { AddSliderComponent } from './add-slider/add-slider.component';
     AppComponent,
     HomeComponent,
     SidebarComponent,
-    DashboardComponent,
-    MCourseComponent,
+    DashboardComponent,    
     NotificationComponent,
-    CourseFormComponent,
-    NotificationFormComponent,
-    TopicFormComponent,
-    MTopicsComponent,
-    EnquiryComponent,
-    AddTopicComponent,
-    AddTopicFormComponent,
+    NotificationFormComponent,    
+    EnquiryComponent,  
     ManagePptNotesComponent,
     AddPptNotesComponent,
     ManagePdfNotesComponent,
@@ -93,6 +87,12 @@ import { AddSliderComponent } from './add-slider/add-slider.component';
     AddVideoComponent,
     ImgSliderComponent,
     AddSliderComponent,
+    ManageCourseComponent,
+    AddCourseComponent,
+    ManageTopicComponent,
+    AddTopicComponent,
+    ManageContentComponent,
+    AddContentComponent,
   ],
   imports: [
     BrowserModule,
