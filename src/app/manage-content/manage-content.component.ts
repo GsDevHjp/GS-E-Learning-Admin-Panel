@@ -3,21 +3,21 @@ import { AfterViewInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { TopicFormComponent } from '../topic-form/topic-form.component';
 import { ApiService } from '../services/api.service';
 import { MatSort } from '@angular/material/sort';
+import { AddContentComponent } from '../add-content/add-content.component';
 
 
 @Component({
-  selector: 'app-m-topics',
-  templateUrl: './m-topics.component.html',
-  styleUrls: ['./m-topics.component.css']
+  selector: 'app-manage-content',
+  templateUrl: './manage-content.component.html',
+  styleUrls: ['./manage-content.component.css']
 })
-export class MTopicsComponent implements OnInit {
-
+export class ManageContentComponent implements OnInit {
   topic_count: any;
-  imageUrl: string = 'http://localhost/E-Learning/src/assets/'
-  displayedColumns: string[] = ['topic_id', 'course_id_fk','topics_id_fk', 'content_heading', 'englishcontent', 'hindicontent', 'urducontent', 'hinglishcontent', 'youtubelink', 'content_image', 'action'];
+  // imageUrl: string = 'http://localhost/E-Learning/src/assets/'
+  imageUrl: string = 'assets/'
+  displayedColumns: string[] = ['topic_id', 'course_id_fk','topics_id_fk', 'content_heading', 'englishcontent', 'hindicontent', 'urducontent', 'hinglishcontent', 'content_image', 'action'];
   dataSource = new MatTableDataSource<any>;
   content_data: any
   
@@ -27,10 +27,11 @@ export class MTopicsComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private service: ApiService
-  ) { }
+  ) { 
+    
+  }
 
   ngOnInit(): void {
-
     this.service.getContent().subscribe(
       (content_data: any)=>{
         this.dataSource = new MatTableDataSource(content_data.data);
@@ -51,16 +52,21 @@ export class MTopicsComponent implements OnInit {
     }
   }
   opentopicForm() {
-    this.dialog.open(TopicFormComponent, {
+    this.dialog.open(AddContentComponent, {
      
     })
   }
 
   editcontent(row: any){
-    this.dialog.open(TopicFormComponent,{
+    this.dialog.open(AddContentComponent,{
       data: row
     })
   }
 }
+
+
+
+  
+
 
 
