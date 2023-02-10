@@ -61,13 +61,14 @@
           <input type="file" style="width: 100%; margin-top: 10px; padding: 12px 5px;margin-left: 12px;"
             (change)="ImageUpload($event)" formControlName="content_image">
   
-          <input type="number" [ngModel]="admin" formControlName="admin_id_fk" hidden>
-          <input type="number" formControlName="content_id" hidden>
+          <input type="number" [ngModel]="admin_id" formControlName="admin_id_fk"hidden>
+          <input type="number" formControlName="content_id"hidden >
   
         </div>
       </div>
     </form>
-    <button mat-raised-button color="warn" style="margin-top:100px;margin-left: -50px;">Reset</button>
+    <button mat-raised-button color="warn" style="margin-top:100px;margin-left: -50px;"  
+    (click)="reset()">Reset</button>
     <button mat-raised-button color="primary" style="margin-left: 10px; margin-top:100px;"
       (click)="addtopic()" [disabled]="!contentForm">{{actionBtn}}</button>
   

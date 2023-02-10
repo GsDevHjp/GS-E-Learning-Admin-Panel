@@ -8,13 +8,13 @@
     margin-top: 10px;
   }
   tr:nth-child(odd){
-    height: 40px;
+    height:40px;
     font-family: cambria;
     font-size: 16px;
   }
   
   tr:nth-child(even){
-    height: 40px;
+    height:80px;
   }
   
   #manage_course {

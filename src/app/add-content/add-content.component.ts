@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-content.component.css']
 })
 export class AddContentComponent implements OnInit {
-  admin: number = 1;
+  admin_id: number = 1;
   contentForm !: FormGroup;
   course_data: any;
   topicfilter_data: any;
@@ -100,17 +100,19 @@ addtopic() {
       (error: any) => {
         alert('Data Not Insert')
       }
-    )
+    )  
 
   }
   else {
     this.Updatecontent()
-  }
+  } 
 
+}
+reset() {
+  this.contentForm.reset()
 }
 
 Updatecontent() {
-
   const updatedata = new FormData();
   updatedata.append('content_id', this.contentForm.get('content_id')?.value);
   updatedata.append('content_heading', this.contentForm.get('content_heading')?.value);
@@ -120,9 +122,8 @@ Updatecontent() {
   updatedata.append('urducontent', this.contentForm.get('urducontent')?.value);
   updatedata.append('hinglishcontent', this.contentForm.get('hinglishcontent')?.value);
   updatedata.append('hindicontent', this.contentForm.get('hindicontent')?.value);
-  updatedata.append('content_image', this.contentForm.get('content_image')?.value);
+  updatedata.append('content_image', this.contentForm.get('content_image')?.value); 
   updatedata.append('admin_id_fk', '1');
-  console.log(this.contentForm.value);
   this.service.putContent(updatedata).subscribe(    
     (result: any) => {
       this.router.navigate(['/manage_content'])
@@ -131,6 +132,7 @@ Updatecontent() {
       this.matref.close();
     },
     (error: any) => {
+      console.log(error)
       alert('Data Not Update')
     }
   )

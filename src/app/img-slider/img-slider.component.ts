@@ -58,8 +58,27 @@ export class ImgSliderComponent implements OnInit {
 
     }
   }
+  delete_slider(row:any){
+    if(confirm('are you sure to delete')){
+      const deldataslider = new FormData();
+      deldataslider.append ('slider_id',row.slider_id);
+      this.service.del_slider(deldataslider).subscribe(
+        (res:any) =>{
+          alert('delete successfully')
+        }
+      )
+    }
+    else{
+      alert('cancel')
+    }
 
+  }
+  edit_slider(row:any){
+    this.dialog.open(AddSliderComponent,{
+      data:row
 
+    })
+  } 
 }
 
 

@@ -11,10 +11,10 @@ export class ApiService {
   ) { }
 
   // online
-  Url:string = 'https://greensoft.net.in/gselearning/api/'
+  // Url:string = 'https://greensoft.net.in/gselearning/api/'
 
   // offline
-  // Url: string = 'http://localhost/elearning%20api/'
+  Url: string = 'http://localhost/elearning%20api/'
 
   ////////////////////// for course ////////////////////////////////////
 
@@ -41,6 +41,16 @@ export class ApiService {
   msgGet() {
     return this.http.get<any>(this.Url + 'notification_view.php');
   }
+
+  putnotification(data: any) {
+    return this.http.post<any>(this.Url + 'notification_update.php', data)
+
+  }
+
+  del_notification(data:any){
+    return this.http.post<any>(this.Url + 'notification_del.php',data)
+  }
+
 
 
   ////////////////////////////////// for topic/////////////////////////
@@ -84,6 +94,10 @@ export class ApiService {
   putPPT(data: any){
     return this.http.post<any>(this.Url + 'update_ppt.php',data)
   }
+  del_ppt_notes(data:any){
+    return this.http.post<any>(this.Url + 'ppt_notes_del.php',data)
+  }
+
 
   //////////////// for pdf notes//////////////
 
@@ -98,6 +112,10 @@ export class ApiService {
   putPDF(data: any){
     return this.http.post<any>(this.Url + 'update_pdf.php', data);
   }
+  del_pdf_notes(data:any){
+    return this.http.post<any>(this.Url + 'pdf_notes_del.php',data)
+  
+  }
 
   // ////////////////////for university/////////////////
 
@@ -108,6 +126,11 @@ export class ApiService {
   universityGet() {
     return this.http.get<any>(this.Url + 'university_view.php');
   }
+  del_university(data:any){
+    return this.http.post<any>(this.Url + 'university_del.php',data)
+  
+  }
+ 
 
   // ///////for previous question////
 
@@ -118,6 +141,11 @@ export class ApiService {
   previousGet() {
     return this.http.get<any>(this.Url + 'previous_question_view.php');
   }
+  del_previous_ques(data:any){
+    return this.http.post<any>(this.Url + 'previous_ques_del.php',data)
+  
+  }
+  
 
   ////////////////// for syllabus//////////////
 
@@ -127,6 +155,10 @@ export class ApiService {
 
   syllabusGet() {
     return this.http.get<any>(this.Url + 'syllabus_view.php')
+  }
+  del_syllabus(data:any){
+    return this.http.post<any>(this.Url + 'syllabus_del.php',data)
+  
   }
 
   ///////////////// for video topic/////////////////
@@ -142,6 +174,10 @@ export class ApiService {
   putVideo(data: any){
     return this.http.put<any>(this.Url + 'video_update.php', data)
   }
+  del_video(data:any){
+    return this.http.post<any>(this.Url + 'video_del.php',data)
+  
+  }
 
   //////////// for slider///////////////
 
@@ -152,6 +188,11 @@ export class ApiService {
   Getslider() {
     return this.http.get<any>(this.Url + 'slider_view.php')
   }
+  del_slider(data:any){
+    return this.http.post<any>(this.Url + 'slider_del.php',data)
+  
+  }
+ 
 
   /////////////////// for topic filter data /////////////////////////////
 

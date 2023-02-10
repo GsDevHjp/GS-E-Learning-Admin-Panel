@@ -58,5 +58,18 @@ export class ManagePdfNotesComponent implements OnInit {
       data: row
     })
   }
-
+  pdf_notes_delect(row:any){
+      if(confirm("are you sure to delect")){
+        const deldatapdf = new FormData();
+        deldatapdf.append ('pdf_id',row.pdf_id);
+        this.service.del_pdf_notes(deldatapdf).subscribe(
+          (res: any) => {
+            alert('data delate sucessfully')
+          }
+        )
+      }
+      else {
+        alert('cancle')
+      }
+      } 
 }

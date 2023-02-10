@@ -64,4 +64,18 @@ export class ManagePptNotesComponent implements OnInit {
 
     }
   }
+  ppt_delect(row:any){
+    if (confirm("Are you sure to delate")) {
+      const deldatappt = new FormData();
+      deldatappt.append('ppt_notes_id', row.ppt_notes_id);
+      this.service.del_ppt_notes(deldatappt).subscribe(
+        (res: any) => {
+          alert('data delate sucessfully')
+        }
+      )
+    }
+    else {
+      alert('cancle')
+    }
+  }  
 }
