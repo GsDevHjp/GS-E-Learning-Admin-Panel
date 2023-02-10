@@ -47,4 +47,21 @@ export class PreviousQuestionComponent implements OnInit {
 
     }
   }
-}
+  delect_previous(row:any){
+    if(confirm('are you sure to Delete')){
+      const deldatapre = new FormData();
+      deldatapre.append('previous_id',row.previous_id);
+      this.service.del_previous_ques(deldatapre).subscribe(
+        (res:any) =>{
+          alert('Delete successfully')
+        }
+      )
+      }
+      else{
+        alert('cancel')
+      }
+    }
+  }
+
+
+

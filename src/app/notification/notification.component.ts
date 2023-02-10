@@ -20,6 +20,7 @@ export class NotificationComponent implements OnInit {
   notifdata:any;
   @ViewChild(MatPaginator) paginator!:MatPaginator;
   @ViewChild(MatSort) sort!:MatSort;
+  dialog: any;
 
   constructor(
     private dailog: MatDialog,
@@ -52,8 +53,31 @@ export class NotificationComponent implements OnInit {
 
   notificationform() {
     this.dailog.open(NotificationFormComponent,{
-      // disableClose:true,
+      disableClose:true,
     })
   }
-}
+ 
+ 
+  delete_noti(row:any){
+    if (confirm("Are you sure to delate")) {
+      const deldatanoti = new FormData();
+      deldatanoti.append('notif_id',row.notif_id);
+      this.service.del_notification(deldatanoti).subscribe(
+        (res: any) => {
+          alert('data delate sucessfully')
+        }
+      )
+    }
+    else {
+      alert('cancel')
+    }
+  }  
+    edittopic(row:any){
+      this.dialog.open(NotificationFormComponent,{
+        data:row
+  
+      })
+    } 
+  }
+
 

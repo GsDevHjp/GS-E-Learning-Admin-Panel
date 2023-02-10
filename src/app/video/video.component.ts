@@ -59,5 +59,19 @@ export class VideoComponent implements OnInit {
       
     })
   }
+  delete_video(row:any){
+    if(confirm('are you sure to delete')){
+     const deldatavideo = new FormData();
+     deldatavideo.append('video_id',row.video_id);
+     this.service.del_video(deldatavideo).subscribe(
+      (res:any) =>{
+        alert('delete successfully')
+      }
+     )
+    }
+    else{
+      alert('cancel')
+    }
+  }
 
 }

@@ -13,7 +13,9 @@ import { AddUniversityComponent } from '../add-university/add-university.compone
   styleUrls: ['./university.component.css']
 })
 export class UniversityComponent implements OnInit {
-  imageUrl:string = 'https://greensoft.net.in/gselearning/assets/'
+  // imageUrl:string = 'https://greensoft.net.in/gselearning/assets/'
+  imageUrl:string = 'assets/'
+
   displayedColumns: string[] = ['university_id', 'university_name','university_img', 'action'];
   dataSource = new MatTableDataSource<any>
 
@@ -51,4 +53,26 @@ export class UniversityComponent implements OnInit {
 
     }
   }
-}
+  delect_unsity(row:any){
+    if(confirm("are you sure delect")){
+      const deldatauniver = new FormData();
+      deldatauniver.append('university_id',row.university_id),
+      this.service.del_university(deldatauniver).subscribe(
+      (res:any) =>{
+         alert('data is delect successfully')
+      }
+      )
+      }
+      else{
+          alert('cancel')
+      }
+
+    }
+    update_uni(row:any){
+      this.dialog.open(AddUniversityComponent,{
+          data:row
+      })
+    }
+
+  }
+

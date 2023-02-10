@@ -1,5 +1,5 @@
 <div id="university_form">
-    <div id="form_head">Add University
+    <div id="form_head">{{for_heading}}
         <span style="float: right;">
             <mat-icon style=" width:auto; height:auto; font-size:35px; transform: rotate(45deg);cursor: pointer;"
                 mat-dialog-close>add_circle</mat-icon>
@@ -15,11 +15,12 @@
 
         <input type="file" id="pdt_files" (change)="onFileChanged($event)" formControlName="university_img">
 
-        <input type="number" [ngModel]="admin" formControlName="admin_id_fk" hidden>
+        <input type="number" [ngModel]="admin_id" formControlName="admin_id_fk" hidden>
+        <input type="number" formControlName="university_id">
 
     </form>
 
     <button mat-button style="background-color: orangered; color: white;margin-left: 90px;">Reset</button>
     <button mat-button style="background-color: rgb(68, 110, 215); color: white;margin-left: 20px;"
-        (click)="adduniversity()">Submit</button>
+        (click)="adduniversity()"[disabled]="!adduniversityForm.valid">{{actionBtn}}</button>
 </div>

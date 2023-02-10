@@ -62,4 +62,18 @@ export class SyllabusComponent implements OnInit {
       data: row
     })
   }
+  delect_syllabus(row:any){
+      if(confirm(" Are sure you to delect")){
+        const delsyllabus = new FormData();
+        delsyllabus.append('syllabus_id',row.syllabus_id);
+        this.service.del_syllabus(delsyllabus).subscribe(
+         ( res:any) =>{
+              alert('data delect successfully')
+          }
+        )
+      }
+      else{
+        alert('cancel')
+      }
+  }
 }

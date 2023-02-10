@@ -7,6 +7,7 @@
     </div>
     <div id="main_form">
         <form [formGroup]="msgForm">
+            <input formControlName="notif_id" hidden>
             <mat-form-field appearance="outline">
                 <mat-label>Message</mat-label>
                 <input matInput class="input_box" required formControlName="msg">
