@@ -1,5 +1,5 @@
 <div id="form">
-    <div id="form_head">Notification
+    <div id="form_head">{{for_heading}}
         <span style="float: right;">
             <mat-icon style=" width:auto; height:auto; font-size:35px; transform: rotate(45deg);cursor: pointer;"
                 mat-dialog-close>add_circle</mat-icon>
@@ -15,6 +15,6 @@
             <input type="number" readonly [ngModel]="admin" formControlName="admin_id_fk" hidden>
         </form>
         <button mat-raised-button color="warn" (click)="reset()">Reset</button>
-        <button mat-raised-button color="primary" style="margin-left: 15px;" (click)="addmsg()" [disabled]="!msgForm.valid">Send</button>
+        <button mat-raised-button color="primary" style="margin-left: 15px;" (click)="addmsg()" [disabled]="!msgForm.valid">{{action_btn}}</button>
     </div>
 </div>

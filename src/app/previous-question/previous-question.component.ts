@@ -14,7 +14,6 @@ import { AddPreviousQuestionComponent } from '../add-previous-question/add-previ
   styleUrls: ['./previous-question.component.css']
 })
 export class PreviousQuestionComponent implements OnInit {
-
   imageUrl: string = 'https://greensoft.net.in/gselearning/assets/'
   displayedColumns: string[] = ['previous_id','university_id_fk', 'course_name','question_name', 'question_file',  'action'];
   dataSource = new MatTableDataSource<any>;
@@ -60,6 +59,11 @@ export class PreviousQuestionComponent implements OnInit {
       else{
         alert('cancel')
       }
+    }
+    update_pre_ques(row:any){
+      this.dialog.open(AddPreviousQuestionComponent,{
+        data: row
+      })
     }
   }
 

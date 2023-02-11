@@ -67,8 +67,8 @@ export class AddPdfNotesComponent implements OnInit {
       this.addpdfForm.controls['pdf_id'].setValue(Number(this.editdata.pdf_id));
       this.addpdfForm.controls['pdf_notes_name'].setValue(this.editdata.pdf_notes_name);
       this.addpdfForm.controls['pdf_file'].setValue(this.editdata.pdf_file);
-      this.addpdfForm.controls['topics_id_fk'].setValue(this.editdata.topics_id_fk);
-      this.addpdfForm.controls['course_id_fk'].setValue(this.editdata.course_id_fk);
+      this.addpdfForm.controls['topics_id_fk'].setValue(this.editdata.topic_id);
+      this.addpdfForm.controls['course_id_fk'].setValue(this.editdata.course_id);
       this.addpdfForm.controls['admin_id_fk'].setValue(this.editdata.admin_id_fk);
     }
   }

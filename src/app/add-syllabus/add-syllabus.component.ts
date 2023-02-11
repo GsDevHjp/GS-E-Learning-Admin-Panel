@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 
@@ -18,12 +18,20 @@ export class AddSyllabusComponent implements OnInit {
   files: any
   syllabusForm !: FormGroup;
   university_data:any;
+  course_data: any;
+  for_heading:string='Add Syllabus'
+  action_btn: string = 'save'
+  syllabusUpdatde = "Update University";
+
 
   constructor(
     private FormBuilder:FormBuilder,
     private service: ApiService,
     private route:Router,
     private matref: MatDialogRef<AddSyllabusComponent>,
+    @Inject(MAT_DIALOG_DATA) public editdata: any,
+
+
   ) { 
     this.files = []
     this.route.routeReuseStrategy.shouldReuseRoute = function(){
@@ -38,6 +46,12 @@ export class AddSyllabusComponent implements OnInit {
         this.university_data = res.data
       }
     )
+    this.service.courseGet().subscribe(
+      (res: any) => {
+        console.log(res)
+        this.course_data = res.data
+      }
+    )
       this.syllabusForm = this.FormBuilder.group({
         university_id_fk:['', Validators.required],
         syllabus_file:['', Validators.required],
@@ -45,7 +59,17 @@ export class AddSyllabusComponent implements OnInit {
         course_name:['',Validators.required],
         admin_id_fk:['',Validators.required],
       })
-    
+       // for editdata form /////
+     if (this.editdata) {
+      this.action_btn = "Update";
+      this.for_heading ="Update Syllabus";
+      this.syllabusUpdatde = "Update Syllabus";
+      this.syllabusForm.controls['university_id_fk'].setValue(Number(this.editdata.university_id));
+      this.syllabusForm.controls['syllabus_file'].setValue(this.editdata.syllabus_file);
+      this.syllabusForm.controls['syllabus_desc'].setValue(this.editdata.syllabus_desc);
+      this.syllabusForm.controls['course_name'].setValue(this.editdata.course_name);
+      this.syllabusForm.controls['admin_id_fk'].setValue(this.editdata.admin_id_fk)
+    }
   }
 
 

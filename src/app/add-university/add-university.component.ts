@@ -53,6 +53,7 @@ export class AddUniversityComponent implements OnInit {
   }
 
   adduniversity(){
+    if (!this.editdata) {
     const formdata = new FormData();
     formdata.append('university_name', this.adduniversityForm.get('university_name')?.value)
     formdata.append('university_img', this.adduniversityForm.get('university_img')?.value)
@@ -69,23 +70,22 @@ export class AddUniversityComponent implements OnInit {
         alert('data not insert')
       }
     )
-    // else {
-    //   this.updateCourse()
-    // }   
+    }
+    else {
+      this.updateUniver()
+    }   
   }
-  updateCourse() {
-    console.log(this.adduniversityForm.value)
 
+  updateUniver() {
+    console.log(this.adduniversityForm.value)
     const updatedata = new FormData();
     // console.log('course' + this.courseForm.get('course_id')?.value)
-
-    updatedata.append('course_id', this.adduniversityForm.get('course_id')?.value)
-    updatedata.append('course_name', this.adduniversityForm.get('course_name')?.value)
-    updatedata.append('course_desc', this.adduniversityForm.get('course_desc')?.value)
-    updatedata.append('course_img', this.adduniversityForm.get('course_img')?.value)
+    updatedata.append('university_id', this.adduniversityForm.get('university_id')?.value)
+    updatedata.append('university_name', this.adduniversityForm.get('university_name')?.value)
+    updatedata.append('university_img', this.adduniversityForm.get('university_img')?.value)
     updatedata.append('admin_id_fk', this.adduniversityForm.get('admin_id_fk')?.value)
     console.log(this.adduniversityForm.value);
-    this.service.putCourse(updatedata).subscribe(
+    this.service.put_university(updatedata).subscribe(
       (result: any) => {
         this.route.navigate(['/manage_course'])
         console.log(result);

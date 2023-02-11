@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {AfterViewInit, ViewChild} from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { NotificationFormComponent } from '../notification-form/notification-form.component';
 import { ApiService } from '../services/api.service';
 import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-notification',
@@ -20,11 +20,11 @@ export class NotificationComponent implements OnInit {
   notifdata:any;
   @ViewChild(MatPaginator) paginator!:MatPaginator;
   @ViewChild(MatSort) sort!:MatSort;
-  dialog: any;
+  row: any;
 
   constructor(
-    private dailog: MatDialog,
-    private service:ApiService
+    private service:ApiService,
+    private dialog:MatDialog
   ){ }
 
   ngOnInit(): void {
@@ -52,8 +52,8 @@ export class NotificationComponent implements OnInit {
   // for notification form
 
   notificationform() {
-    this.dailog.open(NotificationFormComponent,{
-      disableClose:true,
+    this.dialog.open(NotificationFormComponent,{
+      // disableClose:true,
     })
   }
  
@@ -72,12 +72,12 @@ export class NotificationComponent implements OnInit {
       alert('cancel')
     }
   }  
-    edittopic(row:any){
-      this.dialog.open(NotificationFormComponent,{
-        data:row
-  
-      })
-    } 
+  editnotification(row:any){
+    this.dialog.open(NotificationFormComponent,{
+      data:row
+
+    })
+  } 
   }
 
 

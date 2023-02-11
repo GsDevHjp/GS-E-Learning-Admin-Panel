@@ -130,6 +130,10 @@ export class ApiService {
     return this.http.post<any>(this.Url + 'university_del.php',data)
   
   }
+  put_university(data: any){
+    return this.http.post<any>(this.Url + 'university_update.php', data);
+  }
+
  
 
   // ///////for previous question////
@@ -145,6 +149,11 @@ export class ApiService {
     return this.http.post<any>(this.Url + 'previous_ques_del.php',data)
   
   }
+  
+  put_previous_ques(data: any){
+    return this.http.post<any>(this.Url + 'previous_ques_update.php', data);
+  }
+  
   
 
   ////////////////// for syllabus//////////////
@@ -191,6 +200,10 @@ export class ApiService {
   del_slider(data:any){
     return this.http.post<any>(this.Url + 'slider_del.php',data)
   
+  }
+  put_slider(data: any){
+    return this.http.post<any>(this.Url + ' slider_update.php', data)
+    
   }
  
 

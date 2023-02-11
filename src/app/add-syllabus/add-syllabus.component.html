@@ -1,5 +1,5 @@
 <div id="course_form">
-    <div id="form_head">AddSyllabus
+    <div id="form_head">{{for_heading}}
         <span style="float: right;">
             <mat-icon style=" width:auto; height:auto; font-size:35px; transform: rotate(45deg);cursor: pointer;"
                 mat-dialog-close>add_circle</mat-icon>
@@ -15,7 +15,7 @@
                         [value]="uiversity.university_id">{{uiversity.university_name}}</mat-option>
                 </mat-select>
             </mat-form-field>
-
+          
             <mat-form-field appearance="fill">
                 <mat-label>Select Course</mat-label>
                 <mat-select disableRipple formControlName="course_name">
@@ -30,6 +30,9 @@
             </mat-form-field><br><br>
 
             <input type="file" id="course_imgs" (change)="onFileChanged($event)" formControlName="syllabus_file">
+            <!-- <input type="file" id="syllabus_file" (change)="onFileChanged($event)" formControlName="syllabus_file"> -->
+
+
 
             <input type="number" readonly [ngModel]="admin" formControlName="admin_id_fk" hidden>
             <input type="number" formControlName="syllabus_id" hidden>
@@ -38,5 +41,5 @@
     </div>
 
     <button mat-raised-button color="warn" (click)="reset()">Reset</button>
-    <button mat-raised-button color="primary" style="margin-left: 15px;" (click)="addsyllabus()">Submit</button>
+    <button mat-raised-button color="primary" style="margin-left: 15px;" (click)="addsyllabus()"[disabled]="!syllabusForm.valid">{{action_btn}}</button>
 </div>

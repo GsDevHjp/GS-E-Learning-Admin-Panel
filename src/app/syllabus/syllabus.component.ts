@@ -18,7 +18,7 @@ export class SyllabusComponent implements OnInit {
   syllabus_data:any;
   imageUrl:string = 'https://greensoft.net.in/gselearning/assets/'
   
-  displayedColumns: string[] = ['syllabus_id','university_id_fk', 'course_name', 'syllabus_desc','syllabus_file', 'action'];
+  displayedColumns: string[] = ['syllabus_id','university_id_fk', 'course_id_fk', 'syllabus_desc','syllabus_file', 'action'];
   dataSource = new MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -75,5 +75,11 @@ export class SyllabusComponent implements OnInit {
       else{
         alert('cancel')
       }
+  }
+  edit_syllabus(row:any){
+    this.dialog.open(AddSyllabusComponent,{
+      data:row
+
+    })
   }
 }

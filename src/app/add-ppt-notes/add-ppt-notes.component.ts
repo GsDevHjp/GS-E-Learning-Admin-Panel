@@ -67,8 +67,8 @@ export class AddPptNotesComponent implements OnInit {
       this.addpptForm.controls['ppt_notes_id'].setValue(Number(this.editdata.ppt_notes_id));
       this.addpptForm.controls['ppt_notes_name'].setValue(this.editdata.ppt_notes_name);
       this.addpptForm.controls['ppt_file'].setValue(this.editdata.ppt_file);
-      this.addpptForm.controls['topics_id_fk'].setValue(this.editdata.topics_id_fk);
-      this.addpptForm.controls['course_id_fk'].setValue(this.editdata.course_id_fk);
+      this.addpptForm.controls['topics_id_fk'].setValue(this.editdata.topic_id);
+      this.addpptForm.controls['course_id_fk'].setValue(this.editdata.course_id);
       this.addpptForm.controls['admin_id_fk'].setValue(this.editdata.admin_id_fk);
     }
   }
