@@ -6,6 +6,7 @@ import { NotificationFormComponent } from '../notification-form/notification-for
 import { ApiService } from '../services/api.service';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notification',
@@ -14,7 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class NotificationComponent implements OnInit {
 
-  displayedColumns: string[] = ['notif_id', 'msg', 'action'];
+  displayedColumns: string[] = ['notif_id', 'message', 'action'];
   dataSource = new MatTableDataSource<any>;
 
   notifdata:any;
@@ -24,7 +25,8 @@ export class NotificationComponent implements OnInit {
 
   constructor(
     private service:ApiService,
-    private dialog:MatDialog
+    private dialog:MatDialog,
+    private route:Router
   ){ }
 
   ngOnInit(): void {
@@ -55,9 +57,7 @@ export class NotificationComponent implements OnInit {
     this.dialog.open(NotificationFormComponent,{
       // disableClose:true,
     })
-  }
- 
- 
+  }  
   delete_noti(row:any){
     if (confirm("Are you sure to delate")) {
       const deldatanoti = new FormData();
@@ -65,17 +65,17 @@ export class NotificationComponent implements OnInit {
       this.service.del_notification(deldatanoti).subscribe(
         (res: any) => {
           alert('data delate sucessfully')
+          this.route.navigate(['/home/notification']);
         }
       )
     }
     else {
       alert('cancel')
     }
-  }  
+  }    
   editnotification(row:any){
     this.dialog.open(NotificationFormComponent,{
-      data:row
-
+        data:row  
     })
   } 
   }

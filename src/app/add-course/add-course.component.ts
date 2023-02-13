@@ -64,7 +64,7 @@ export class AddCourseComponent implements OnInit {
       console.log(this.courseForm.value);
       this.service.coursePost(formdata).subscribe(
         (result: any) => {
-          this.route.navigate(['manage_course']);           
+          this.route.navigate(['/home/manage_course']);           
           console.log(result);
           alert("Data add successfully");
           this.matref.close();
@@ -88,7 +88,7 @@ export class AddCourseComponent implements OnInit {
     console.log(this.courseForm.value);
     this.service.putCourse(updatedata).subscribe(
       (result: any) => {
-        this.route.navigate(['/manage_course'])
+        this.route.navigate(['/home/manage_course']);           
         console.log(result);
         alert("Data Update successfully");
         this.matref.close();

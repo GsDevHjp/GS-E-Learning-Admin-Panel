@@ -31,6 +31,11 @@ export class ApiService {
     return this.http.post<any>(this.Url + 'course_update.php', data)
 
   }
+  del_course(data:any){
+    return this.http.post<any>(this.Url + 'course_del.php',data)
+  }
+   
+
 
 
   //////////////////////////// for notification ////////////////////////
@@ -66,6 +71,9 @@ export class ApiService {
   putTopic(data: any) {
     return this.http.put<any>(this.Url + 'topic_update.php', data)
   }
+  del_topic(data:any){
+    return this.http.post<any>(this.Url + 'topic_del.php',data)
+  }
 
   ///////////////////////////////////////// for content ///////////////////////
 
@@ -80,6 +88,11 @@ export class ApiService {
   putContent(data: any){
     return this.http.post<any>(this.Url + 'content_update.php', data);
   }
+  del_content(data:any){
+    return this.http.post<any>(this.Url + 'content_del.php',data)
+    
+  }
+
 
   ///////////////////////////// for ppt notes////////////////////
 
@@ -168,6 +181,9 @@ export class ApiService {
   del_syllabus(data:any){
     return this.http.post<any>(this.Url + 'syllabus_del.php',data)
   
+  }
+  put_Syllabus(data: any){
+    return this.http.post<any>(this.Url + 'syllabus_update.php', data)
   }
 
   ///////////////// for video topic/////////////////

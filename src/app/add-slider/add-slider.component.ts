@@ -32,10 +32,11 @@ export class AddSliderComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public editdata: any,
 
   ) {
-    this.files = [];
+    // this.files = [];
     this.route.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     }
+    
   }
 
   ngOnInit(): void {
@@ -64,7 +65,7 @@ export class AddSliderComponent implements OnInit {
     formdata.append('admin_id_fk', this.sliderForm.get('admin_id_fk')?.value)
     this.service.post_slider(formdata).subscribe(
       (result: any) => {
-        this.route.navigate(['/img_slider'])
+        this.route.navigate(['/home/img_slider'])
         console.log(result)
         alert('Data Insert Sucessfully')
         this.matref.close();
@@ -80,6 +81,7 @@ export class AddSliderComponent implements OnInit {
     } 
   }  
   update_slider() {
+    console.log(this.sliderForm.value)
     const updatedata = new FormData();
     updatedata.append('slider_id', this.sliderForm.get('slider_id')?.value)
     updatedata.append('slider_text', this.sliderForm.get('slider_text')?.value)
@@ -87,7 +89,7 @@ export class AddSliderComponent implements OnInit {
     updatedata.append('admin_id_fk', this.sliderForm.get('admin_id_fk')?.value)
     this.service.put_slider(updatedata).subscribe(
       (result: any) => {
-        this.route.navigate(['/manage_course'])
+        this.route.navigate(['/home/img_slider'])
         console.log(result);
         alert("Data Update successfully");
         this.matref.close();

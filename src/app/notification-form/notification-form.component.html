@@ -7,10 +7,11 @@
     </div>
     <div id="main_form">
         <form [formGroup]="msgForm">
-            <input formControlName="notif_id" hidden>
+            <input type="number" formControlName="notif_id" hidden>
+         
             <mat-form-field appearance="outline">
                 <mat-label>Message</mat-label>
-                <input matInput class="input_box" required formControlName="msg">
+                <input matInput class="input_box" required formControlName="message">
             </mat-form-field>
             <input type="number" readonly [ngModel]="admin" formControlName="admin_id_fk" hidden>
         </form>

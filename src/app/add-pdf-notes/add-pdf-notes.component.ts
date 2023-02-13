@@ -83,7 +83,7 @@ export class AddPdfNotesComponent implements OnInit {
       formdata.append('admin_id_fk', this.addpdfForm.get('admin_id_fk')?.value)
       this.service.post_pdtnotes(formdata).subscribe(
         (result: any) => {
-          this.route.navigate(['/pdf_notes'])
+          this.route.navigate(['/home/pdf_notes'])
           console.log(result)
           alert('Data Insert Sucessfully')
           this.matref.close();
@@ -112,7 +112,7 @@ export class AddPdfNotesComponent implements OnInit {
     console.log(this.addpdfForm.value);
     this.service.putPDF(updatepdf).subscribe(
       (result: any) => {
-        this.route.navigate(['/manage_pdf'])
+        this.route.navigate(['/home/pdf_notes'])
         console.log(result);
         alert('Data Update Successfully')
         this.matref.close()

@@ -34,7 +34,7 @@ export class AddUniversityComponent implements OnInit {
 
   ngOnInit(): void {
     this.adduniversityForm = this.FormBuilder.group({
-      university_id:['',Validators.required],
+      university_id:[''],
       university_name: ['', Validators.required],
       university_img: ['', Validators.required],
       admin_id_fk: ['', Validators.required],
@@ -60,7 +60,7 @@ export class AddUniversityComponent implements OnInit {
     formdata.append('admin_id_fk', this.adduniversityForm.get('admin_id_fk')?.value)
     this.service.post_university(formdata).subscribe(
       (result: any) => {
-        this.route.navigate(['/university'])
+        this.route.navigate(['/home/university'])
         console.log(result)
         alert('Data Insert Sucessfully')
         this.matref.close();
@@ -87,7 +87,7 @@ export class AddUniversityComponent implements OnInit {
     console.log(this.adduniversityForm.value);
     this.service.put_university(updatedata).subscribe(
       (result: any) => {
-        this.route.navigate(['/manage_course'])
+        this.route.navigate(['/home/university'])
         console.log(result);
         alert("Data Update successfully");
         this.matref.close();

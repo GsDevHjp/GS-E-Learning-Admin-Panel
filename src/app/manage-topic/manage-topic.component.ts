@@ -6,6 +6,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { ApiService } from '../services/api.service';
 import { MatSort } from '@angular/material/sort';
 import { AddTopicComponent } from '../add-topic/add-topic.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-topic',
@@ -21,7 +22,9 @@ export class ManageTopicComponent implements OnInit {
   @ViewChild(MatSort) sort!:MatSort;
   constructor(
     private dialog: MatDialog,
-    private service:ApiService
+    private service:ApiService,
+    private route:Router
+
   ) { }
 
   ngOnInit(): void {  
@@ -62,8 +65,28 @@ edittopic(row:any){
     data: row
   })
 }
+delete_topic(row:any){
+  if(confirm('are you sure to delete')){
+    const deldatatopic = new FormData();
+    deldatatopic.append('topic_id',row.topic_id),
+    this.service.del_topic(deldatatopic).subscribe(
+      (res:any) =>{
+        this.route.navigate(['/home/manage_topic']);        
+        alert('data is delete successfully')
+      }
+    )
+      
+  }
+  else{
+    alert('cancel')
+  }
+
+} 
 
 }
+
+
+
 
 
 

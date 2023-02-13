@@ -6,6 +6,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { ApiService } from '../services/api.service';
 import { MatSort } from '@angular/material/sort';
 import { AddUniversityComponent } from '../add-university/add-university.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-university',
@@ -24,8 +25,13 @@ export class UniversityComponent implements OnInit {
   universitydata:any
   constructor(
     private dialog:MatDialog,
-    private service:ApiService
-  ) { }
+    private service:ApiService,
+    private route:Router
+  ) { 
+    this.route.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    }
+  }
 
   ngOnInit(): void {
     this.service.universityGet().subscribe(
@@ -59,6 +65,7 @@ export class UniversityComponent implements OnInit {
       deldatauniver.append('university_id',row.university_id),
       this.service.del_university(deldatauniver).subscribe(
       (res:any) =>{
+        this.route.navigate(['/home/university']);
          alert('data is delect successfully')
       }
       )

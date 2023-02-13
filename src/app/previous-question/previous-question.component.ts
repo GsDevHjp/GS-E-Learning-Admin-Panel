@@ -6,7 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../services/api.service';
 import { MatSort } from '@angular/material/sort';
 import { AddPreviousQuestionComponent } from '../add-previous-question/add-previous-question.component';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-previous-question',
@@ -24,8 +24,13 @@ export class PreviousQuestionComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private service: ApiService
-  ) { }
+    private service: ApiService,
+    private route:Router
+  ) { 
+    this.route.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+   }
+  }
 
   ngOnInit(): void {
     this.service.previousGet().subscribe(
@@ -52,6 +57,7 @@ export class PreviousQuestionComponent implements OnInit {
       deldatapre.append('previous_id',row.previous_id);
       this.service.del_previous_ques(deldatapre).subscribe(
         (res:any) =>{
+          this.route.navigate(['/home/previous_question']);
           alert('Delete successfully')
         }
       )

@@ -1,6 +1,7 @@
 /*********************css for box style start*******************/
 .box{
-    width: 18.5%;
+    width:30%;
+    /* width: 18.5%; */
     height: 120px;
     box-sizing: border-box;
     float: left;
