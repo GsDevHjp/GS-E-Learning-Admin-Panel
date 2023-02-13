@@ -67,8 +67,8 @@ export class AddPptNotesComponent implements OnInit {
       this.addpptForm.controls['ppt_notes_id'].setValue(Number(this.editdata.ppt_notes_id));
       this.addpptForm.controls['ppt_notes_name'].setValue(this.editdata.ppt_notes_name);
       this.addpptForm.controls['ppt_file'].setValue(this.editdata.ppt_file);
-      this.addpptForm.controls['topics_id_fk'].setValue(this.editdata.topics_id_fk);
-      this.addpptForm.controls['course_id_fk'].setValue(this.editdata.course_id_fk);
+      this.addpptForm.controls['topics_id_fk'].setValue(this.editdata.topic_id);
+      this.addpptForm.controls['course_id_fk'].setValue(this.editdata.course_id);
       this.addpptForm.controls['admin_id_fk'].setValue(this.editdata.admin_id_fk);
     }
   }
@@ -83,7 +83,7 @@ export class AddPptNotesComponent implements OnInit {
       formdata.append('admin_id_fk', this.addpptForm.get('admin_id_fk')?.value)
       this.service.post_pptnotes(formdata).subscribe(
         (result: any) => {
-          this.route.navigate(['/ppt_notes'])
+          this.route.navigate(['/home/ppt_notes'])
           console.log(result)
           alert('Data Insert Sucessfully')
           this.matref.close();
@@ -111,7 +111,7 @@ export class AddPptNotesComponent implements OnInit {
     console.log(this.addpptForm.value);
     this.service.putPPT(updateppt).subscribe(
       (result: any) => {
-        this.route.navigate(['/manage_ppt'])
+        this.route.navigate(['/home/ppt_notes'])
         console.log(result);
         alert('Data Update Successfully')
         this.matref.close();

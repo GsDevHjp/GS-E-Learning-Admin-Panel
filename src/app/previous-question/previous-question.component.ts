@@ -6,7 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../services/api.service';
 import { MatSort } from '@angular/material/sort';
 import { AddPreviousQuestionComponent } from '../add-previous-question/add-previous-question.component';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-previous-question',
@@ -14,7 +14,6 @@ import { AddPreviousQuestionComponent } from '../add-previous-question/add-previ
   styleUrls: ['./previous-question.component.css']
 })
 export class PreviousQuestionComponent implements OnInit {
-
   imageUrl: string = 'https://greensoft.net.in/gselearning/assets/'
   displayedColumns: string[] = ['previous_id','university_id_fk', 'course_name','question_name', 'question_file',  'action'];
   dataSource = new MatTableDataSource<any>;
@@ -25,8 +24,13 @@ export class PreviousQuestionComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private service: ApiService
-  ) { }
+    private service: ApiService,
+    private route:Router
+  ) { 
+    this.route.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+   }
+  }
 
   ngOnInit(): void {
     this.service.previousGet().subscribe(
@@ -53,6 +57,7 @@ export class PreviousQuestionComponent implements OnInit {
       deldatapre.append('previous_id',row.previous_id);
       this.service.del_previous_ques(deldatapre).subscribe(
         (res:any) =>{
+          this.route.navigate(['/home/previous_question']);
           alert('Delete successfully')
         }
       )
@@ -60,6 +65,11 @@ export class PreviousQuestionComponent implements OnInit {
       else{
         alert('cancel')
       }
+    }
+    update_pre_ques(row:any){
+      this.dialog.open(AddPreviousQuestionComponent,{
+        data: row
+      })
     }
   }
 

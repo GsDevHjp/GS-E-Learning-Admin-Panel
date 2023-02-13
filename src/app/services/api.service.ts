@@ -11,10 +11,10 @@ export class ApiService {
   ) { }
 
   // online
-  // Url:string = 'https://greensoft.net.in/gselearning/api/'
+  Url:string = 'https://greensoft.net.in/gselearning/api/'
 
   // offline
-  Url: string = 'http://localhost/elearning%20api/'
+  // Url: string = 'http://localhost/elearning%20api/'
 
   ////////////////////// for course ////////////////////////////////////
 
@@ -31,6 +31,11 @@ export class ApiService {
     return this.http.post<any>(this.Url + 'course_update.php', data)
 
   }
+  del_course(data:any){
+    return this.http.post<any>(this.Url + 'course_del.php',data)
+  }
+   
+
 
 
   //////////////////////////// for notification ////////////////////////
@@ -66,6 +71,9 @@ export class ApiService {
   putTopic(data: any) {
     return this.http.put<any>(this.Url + 'topic_update.php', data)
   }
+  del_topic(data:any){
+    return this.http.post<any>(this.Url + 'topic_del.php',data)
+  }
 
   ///////////////////////////////////////// for content ///////////////////////
 
@@ -80,6 +88,11 @@ export class ApiService {
   putContent(data: any){
     return this.http.post<any>(this.Url + 'content_update.php', data);
   }
+  del_content(data:any){
+    return this.http.post<any>(this.Url + 'content_del.php',data)
+    
+  }
+
 
   ///////////////////////////// for ppt notes////////////////////
 
@@ -130,6 +143,10 @@ export class ApiService {
     return this.http.post<any>(this.Url + 'university_del.php',data)
   
   }
+  put_university(data: any){
+    return this.http.post<any>(this.Url + 'university_update.php', data);
+  }
+
  
 
   // ///////for previous question////
@@ -146,6 +163,11 @@ export class ApiService {
   
   }
   
+  put_previous_ques(data: any){
+    return this.http.post<any>(this.Url + 'previous_ques_update.php', data);
+  }
+  
+  
 
   ////////////////// for syllabus//////////////
 
@@ -159,6 +181,9 @@ export class ApiService {
   del_syllabus(data:any){
     return this.http.post<any>(this.Url + 'syllabus_del.php',data)
   
+  }
+  put_Syllabus(data: any){
+    return this.http.post<any>(this.Url + 'syllabus_update.php', data)
   }
 
   ///////////////// for video topic/////////////////
@@ -191,6 +216,10 @@ export class ApiService {
   del_slider(data:any){
     return this.http.post<any>(this.Url + 'slider_del.php',data)
   
+  }
+  put_slider(data: any){
+    return this.http.post<any>(this.Url + ' slider_update.php', data)
+    
   }
  
 

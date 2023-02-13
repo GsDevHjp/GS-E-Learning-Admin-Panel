@@ -12,13 +12,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-video.component.css']
 })
 export class AddVideoComponent implements OnInit {
-
   addvideoForm !: FormGroup
   course_data: any
-  admin = 1;
+  admin_id = 1;
   topicfilter_data: any;
-  actionBtn: string = 'Save'
-  Updatevideo: string = "Add Video"
+  actionBtn:string = 'Save'
+  universityUpdatde: string = 'Update University'
+  for_heading:string='Add Video'
+  
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public editdata: any,
@@ -32,10 +33,13 @@ export class AddVideoComponent implements OnInit {
     this.service.courseGet().subscribe(
       (res: any) => {
         this.course_data = res.data
-
       }
     )
-
+    this.service.getTopic().subscribe(
+      (res: any) => {
+        this.topicfilter_data = res.data
+      }
+    )
     this.addvideoForm = this.FormBuilder.group({
       video_id: [''],
       course_id_fk: ['', Validators.required],
@@ -49,14 +53,16 @@ export class AddVideoComponent implements OnInit {
     if (this.editdata) {
       console.log(this.editdata)
       this.actionBtn = "Update";
-      this.Updatevideo = "Update video";
+      this.for_heading ="Update Video";
+      // this.universityUpdatde = "Update University";
       this.addvideoForm.controls['video_id'].setValue(Number(this.editdata.video_id));
-      this.addvideoForm.controls['course_id_fk'].setValue(this.editdata.course_id_fk);
-      this.addvideoForm.controls['topics_id_fk'].setValue(this.editdata.topics_id_fk);
+      this.addvideoForm.controls['course_id_fk'].setValue(this.editdata.course_id);
+      this.addvideoForm.controls['topics_id_fk'].setValue(this.editdata.topic_id);
       this.addvideoForm.controls['video_title'].setValue(this.editdata.video_title);
       this.addvideoForm.controls['video_url'].setValue(this.editdata.video_url);
       this.addvideoForm.controls['admin_id_fk'].setValue(this.editdata.admin_id_fk);
-    }
+    }   
+    
   }
 
   addvideo() {

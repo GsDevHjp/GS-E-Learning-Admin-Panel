@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../services/api.service';
 import { MatSort } from '@angular/material/sort';
 import { AddSliderComponent } from '../add-slider/add-slider.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -28,8 +29,13 @@ export class ImgSliderComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private service: ApiService
-  ) { }
+    private service: ApiService,
+    private route:Router
+  ) { 
+    this.route.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    }
+  }
 
   ngOnInit(): void {
     this.service.Getslider().subscribe(
@@ -64,6 +70,7 @@ export class ImgSliderComponent implements OnInit {
       deldataslider.append ('slider_id',row.slider_id);
       this.service.del_slider(deldataslider).subscribe(
         (res:any) =>{
+          this.route.navigate(['/home/img_slider']);
           alert('delete successfully')
         }
       )

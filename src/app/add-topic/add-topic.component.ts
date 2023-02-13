@@ -63,7 +63,7 @@ export class AddTopicComponent implements OnInit {
     if (!this.editdata) {
       this.service.getTopic().subscribe(
         (res: any) => {
-          this.topic_pri = Number(res.data[0].topic_number) + Number(1)
+          // this.topic_pri = Number(res.data[0].topic_number) + Number(1)
           const formdata = new FormData();
           formdata.append('topics_name', this.addtopicForm.get('topics_name')?.value)
           formdata.append('course_id_fk', this.addtopicForm.get('course_id_fk')?.value)
@@ -74,7 +74,7 @@ export class AddTopicComponent implements OnInit {
               console.log(result)
               alert('Data Insert Successfully')
               this.matref.close();
-              this.route.navigate(['/addtopic'])
+              this.route.navigate(['/home/manage_topic'])
 
             },
             (error: any) => {
@@ -94,7 +94,7 @@ export class AddTopicComponent implements OnInit {
     this.service.putTopic(this.addtopicForm.value).subscribe(
       (result: any) => {
         console.log(result)
-        // this.route.navigate(['/addtopic'])
+        this.route.navigate(['/home/manage_topic'])
         alert('Data Update Successfully')
         this.matref.close();
       },

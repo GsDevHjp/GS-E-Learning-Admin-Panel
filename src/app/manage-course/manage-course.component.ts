@@ -6,6 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../services/api.service';
 import { MatSort } from '@angular/material/sort';
 import { AddCourseComponent } from '../add-course/add-course.component';
+import { formatDate } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-course',
@@ -25,8 +27,9 @@ export class ManageCourseComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private service: ApiService
-  ) { }
+    private service: ApiService,
+    private route: Router 
+     ) { }
 
   ngOnInit(): void {
     this.service.courseGet().subscribe(
@@ -65,5 +68,22 @@ export class ManageCourseComponent implements OnInit {
       data: row
     })
   }
+  delete_course(row:any){
+    if(confirm('are you sure to delete')){
+      const deldatacourse =new FormData();
+      deldatacourse.append('course_id',row.course_id),
+      this.service.del_course(deldatacourse).subscribe(
+        (res:any) =>{
+          this.route.navigate(['/home/manage_course']);                   
+          alert('data is delete successfully')
+        }
+      )
+        
+    }
+    else{
+      alert('cancel')
+    }
+
+  }  
 
 }

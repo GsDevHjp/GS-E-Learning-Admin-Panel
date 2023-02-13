@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../services/api.service';
 import { MatSort } from '@angular/material/sort';
 import { AddContentComponent } from '../add-content/add-content.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -26,7 +27,8 @@ export class ManageContentComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private service: ApiService
+    private service: ApiService,
+    private route:Router
   ) { 
     
   }
@@ -62,7 +64,28 @@ export class ManageContentComponent implements OnInit {
       data: row
     })
   }
-}
+  delete_content(row:any){
+    if(confirm('are you to sure delete')){
+      const deldatacontent = new FormData();
+      deldatacontent.append('content_id',row.content_id),
+      this.service.del_content(deldatacontent).subscribe(
+        (res:any) =>{
+          this.route.navigate(['/home/manage_content']);
+          alert('data is delete successfully')
+        }
+      )
+      
+        
+    }
+    else{
+      alert('cancel')
+    }
+
+  } 
+
+    }
+  
+
 
 
 

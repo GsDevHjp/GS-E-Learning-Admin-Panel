@@ -13,7 +13,6 @@ import { AddVideoComponent } from '../add-video/add-video.component';
   styleUrls: ['./video.component.css']
 })
 export class VideoComponent implements OnInit {
-
   videodata:any
   dataSource = new MatTableDataSource<any>;
   displayedColumns: string[] = ['video_id','course_id_fk', 'topics_id_fk','video_title', 'video_url', 'action'];
@@ -54,9 +53,9 @@ export class VideoComponent implements OnInit {
     }
   }
 
-  editvideo(){
+  editvideo(row:any){
     this.dialog.open(AddVideoComponent,{
-      
+      data:row
     })
   }
   delete_video(row:any){

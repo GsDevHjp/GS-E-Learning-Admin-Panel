@@ -27,7 +27,7 @@ table {
     width: 25%;
     height: 100%;
     font-size: 16px;
-    font-style: italic;
+    font-family: cambria;
     padding: 10px;
     float: left;
   }
@@ -56,7 +56,7 @@ table {
     float: left;
     font-size: 16px;
     padding: 10px;
-    font-style: italic;
+    font-family:cambria;
   }
   #search_box{
     width: auto;
@@ -66,7 +66,8 @@ table {
   #search_box input{
     width: 250px;
     height: 99%;
-    font-size: 18px;
+    font-size:20px;
+    font-family:cambria;
     border: none;
     border-bottom: 2px solid black;
     background-color: whitesmoke;

@@ -6,6 +6,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { ApiService } from '../services/api.service';
 import { MatSort } from '@angular/material/sort';
 import { AddSyllabusComponent } from '../add-syllabus/add-syllabus.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class SyllabusComponent implements OnInit {
   syllabus_data:any;
   imageUrl:string = 'https://greensoft.net.in/gselearning/assets/'
   
-  displayedColumns: string[] = ['syllabus_id','university_id_fk', 'course_name', 'syllabus_desc','syllabus_file', 'action'];
+  displayedColumns: string[] = ['syllabus_id','university_id_fk', 'course_id_fk', 'syllabus_desc','syllabus_file', 'action'];
   dataSource = new MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -26,8 +27,13 @@ export class SyllabusComponent implements OnInit {
 
   constructor(
     private dialog:MatDialog,
-    private service:ApiService
-  ) { }
+    private service:ApiService,
+    private route:Router
+  ) { 
+    this.route.routeReuseStrategy.shouldReuseRoute = function(){
+      return false;
+    }
+  }
 
   ngOnInit(): void {
     this.service.syllabusGet().subscribe(
@@ -68,12 +74,19 @@ export class SyllabusComponent implements OnInit {
         delsyllabus.append('syllabus_id',row.syllabus_id);
         this.service.del_syllabus(delsyllabus).subscribe(
          ( res:any) =>{
-              alert('data delect successfully')
+          this.route.navigate(['/home/syllabus']);
+          alert('data delect successfully')
           }
         )
       }
       else{
         alert('cancel')
       }
+  }
+  edit_syllabus(row:any){
+    this.dialog.open(AddSyllabusComponent,{
+      data:row
+
+    })
   }
 }

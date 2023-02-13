@@ -67,8 +67,8 @@ export class AddPdfNotesComponent implements OnInit {
       this.addpdfForm.controls['pdf_id'].setValue(Number(this.editdata.pdf_id));
       this.addpdfForm.controls['pdf_notes_name'].setValue(this.editdata.pdf_notes_name);
       this.addpdfForm.controls['pdf_file'].setValue(this.editdata.pdf_file);
-      this.addpdfForm.controls['topics_id_fk'].setValue(this.editdata.topics_id_fk);
-      this.addpdfForm.controls['course_id_fk'].setValue(this.editdata.course_id_fk);
+      this.addpdfForm.controls['topics_id_fk'].setValue(this.editdata.topic_id);
+      this.addpdfForm.controls['course_id_fk'].setValue(this.editdata.course_id);
       this.addpdfForm.controls['admin_id_fk'].setValue(this.editdata.admin_id_fk);
     }
   }
@@ -83,7 +83,7 @@ export class AddPdfNotesComponent implements OnInit {
       formdata.append('admin_id_fk', this.addpdfForm.get('admin_id_fk')?.value)
       this.service.post_pdtnotes(formdata).subscribe(
         (result: any) => {
-          this.route.navigate(['/pdf_notes'])
+          this.route.navigate(['/home/pdf_notes'])
           console.log(result)
           alert('Data Insert Sucessfully')
           this.matref.close();
@@ -112,7 +112,7 @@ export class AddPdfNotesComponent implements OnInit {
     console.log(this.addpdfForm.value);
     this.service.putPDF(updatepdf).subscribe(
       (result: any) => {
-        this.route.navigate(['/manage_pdf'])
+        this.route.navigate(['/home/pdf_notes'])
         console.log(result);
         alert('Data Update Successfully')
         this.matref.close()

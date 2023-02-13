@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {AfterViewInit, ViewChild} from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { NotificationFormComponent } from '../notification-form/notification-form.component';
 import { ApiService } from '../services/api.service';
 import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notification',
@@ -14,17 +15,18 @@ import { MatSort } from '@angular/material/sort';
 })
 export class NotificationComponent implements OnInit {
 
-  displayedColumns: string[] = ['notif_id', 'msg', 'action'];
+  displayedColumns: string[] = ['notif_id', 'message', 'action'];
   dataSource = new MatTableDataSource<any>;
 
   notifdata:any;
   @ViewChild(MatPaginator) paginator!:MatPaginator;
   @ViewChild(MatSort) sort!:MatSort;
-  dialog: any;
+  row: any;
 
   constructor(
-    private dailog: MatDialog,
-    private service:ApiService
+    private service:ApiService,
+    private dialog:MatDialog,
+    private route:Router
   ){ }
 
   ngOnInit(): void {
@@ -52,12 +54,10 @@ export class NotificationComponent implements OnInit {
   // for notification form
 
   notificationform() {
-    this.dailog.open(NotificationFormComponent,{
-      disableClose:true,
+    this.dialog.open(NotificationFormComponent,{
+      // disableClose:true,
     })
-  }
- 
- 
+  }  
   delete_noti(row:any){
     if (confirm("Are you sure to delate")) {
       const deldatanoti = new FormData();
@@ -65,19 +65,19 @@ export class NotificationComponent implements OnInit {
       this.service.del_notification(deldatanoti).subscribe(
         (res: any) => {
           alert('data delate sucessfully')
+          this.route.navigate(['/home/notification']);
         }
       )
     }
     else {
       alert('cancel')
     }
-  }  
-    edittopic(row:any){
-      this.dialog.open(NotificationFormComponent,{
-        data:row
-  
-      })
-    } 
+  }    
+  editnotification(row:any){
+    this.dialog.open(NotificationFormComponent,{
+        data:row  
+    })
+  } 
   }
 
 

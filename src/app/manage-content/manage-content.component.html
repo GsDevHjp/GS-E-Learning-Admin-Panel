@@ -72,7 +72,10 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef> Action </th>
           <td mat-cell *matCellDef="let row">
-            <mat-icon class="action_icon" (click)="editcontent(row)">create</mat-icon>
+            <mat-icon class="action_icon" (click)="editcontent(row)">create</mat-icon><br>
+            <mat-icon (click)="delete_content(row)">delete</mat-icon>
+
+
           </td>
         </ng-container>
   

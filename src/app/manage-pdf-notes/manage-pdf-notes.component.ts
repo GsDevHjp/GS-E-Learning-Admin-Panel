@@ -6,6 +6,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { ApiService } from '../services/api.service';
 import { MatSort } from '@angular/material/sort';
 import { AddPdfNotesComponent } from '../add-pdf-notes/add-pdf-notes.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -25,7 +26,8 @@ export class ManagePdfNotesComponent implements OnInit {
 
   constructor(
     private dialog:MatDialog,
-    private service:ApiService
+    private service:ApiService,
+    private route:Router
   ) { }
 
   ngOnInit(): void {
@@ -64,6 +66,7 @@ export class ManagePdfNotesComponent implements OnInit {
         deldatapdf.append ('pdf_id',row.pdf_id);
         this.service.del_pdf_notes(deldatapdf).subscribe(
           (res: any) => {
+            this.route.navigate(['/home/pdf_notes']);
             alert('data delate sucessfully')
           }
         )
