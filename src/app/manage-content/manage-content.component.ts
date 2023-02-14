@@ -65,24 +65,21 @@ export class ManageContentComponent implements OnInit {
     })
   }
   delete_content(row:any){
-    if(confirm('are you to sure delete')){
-      const deldatacontent = new FormData();
-      deldatacontent.append('content_id',row.content_id),
-      this.service.del_content(deldatacontent).subscribe(
+    if(confirm('are you sure to delete')){
+      const deldataslider = new FormData();
+      deldataslider.append ('content_id',row.content_id);
+      this.service.del_content(deldataslider).subscribe(
         (res:any) =>{
           this.route.navigate(['/home/manage_content']);
-          alert('data is delete successfully')
+          alert('delete successfully')
         }
       )
-      
-        
     }
     else{
       alert('cancel')
     }
 
-  } 
-
+  }
     }
   
 
