@@ -74,7 +74,14 @@ export class DashboardComponent implements OnInit {
       (res:any)=>{
         this.all_syllabus= res.data.length
       }
-    ) 
+    )
+    
+    // /////// for previous//////////////////
+       this.api.previousGet().subscribe(
+        (res:any)=>{
+          this.all_previous_question = res.data.lenght
+        }
+       )
 
     //////////// for slider////////////////
 

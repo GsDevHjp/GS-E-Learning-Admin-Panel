@@ -35,13 +35,11 @@
             <th mat-header-cell *matHeaderCellDef> Description </th>
             <td mat-cell *matCellDef="let element"> <textarea readonly>{{element.syllabus_desc}}</textarea> </td>
           </ng-container>
-
+                <!-- file Name -->
           <ng-container matColumnDef="syllabus_file">
             <th mat-header-cell *matHeaderCellDef> Syllabus File </th>
-            <td mat-cell *matCellDef="let row"> 
-              <mat-icon (click)="edit_syllabus(row)">picture_as_pdf</mat-icon>
-            </td>
-          </ng-container>
+            <td mat-cell *matCellDef="let row"><a href="{{imageUrl}}/{{row.syllabus_file}}"><mat-icon>picture_as_pdf</mat-icon></a></td>                           
+          </ng-container>           
 
           <!-- Edit Course -->
           <ng-container matColumnDef="action">

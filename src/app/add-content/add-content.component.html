@@ -10,7 +10,7 @@
         <div id="main_form_1">
           <mat-form-field appearance="outline" style="margin-top: 15px;">
             <mat-label>Select Course</mat-label>
-            <mat-select disableRipple formControlName="courses_id_fk" (valueChange)="getCourse($event)">
+            <mat-select disableRipple formControlName="course_id_fk" (valueChange)="getCourse($event)">
               <mat-option *ngFor="let course of course_data"
                 [value]="course.course_id">{{course.course_name}}</mat-option>
             </mat-select>
@@ -62,13 +62,11 @@
             (change)="ImageUpload($event)" formControlName="content_image">
   
           <input type="number" [ngModel]="admin_id" formControlName="admin_id_fk">
-          <input type="number" formControlName="content_id">
   
         </div>
       </div>
     </form>
-    <button mat-raised-button color="warn" style="margin-top:100px;margin-left: -50px;"  
-    (click)="reset()">Reset</button>
+    <button mat-raised-button color="warn" style="margin-top:100px;margin-left: -50px;">Reset</button>
     <button mat-raised-button color="primary" style="margin-left: 10px; margin-top:100px;"
       (click)="addtopic()" [disabled]="!contentForm">{{actionBtn}}</button>
   

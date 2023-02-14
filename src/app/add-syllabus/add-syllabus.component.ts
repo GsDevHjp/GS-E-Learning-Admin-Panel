@@ -112,9 +112,10 @@ export class AddSyllabusComponent implements OnInit {
     formedit.append('admin_id_fk', this.syllabusForm.get('admin_id_fk')?.value)
     this.service.put_Syllabus(formedit).subscribe({
       next:(res:any)=>{
+        this.route.navigate(['/home/syllabus']);
         console.log(res)
         this.matref.close();
-        alert('successfully..')
+        alert(' Update successfully..')
       },
       error:(error:any)=>{
         console.log(error)

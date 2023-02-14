@@ -14,6 +14,7 @@ export class ApiService {
   Url:string = 'https://greensoft.net.in/gselearning/api/'
 
   // offline
+  // Url: string = 'http://localhost/elearning%20api/'
 
   ////////////////////// for course ////////////////////////////////////
 
@@ -79,20 +80,15 @@ export class ApiService {
   postcontent(data: any) {
     return this.http.post<any>(this.Url + 'content_insert.php', data);
   }
-
   getContent() {
     return this.http.get<any>(this.Url + 'content_view.php');
   }
-
   putContent(data: any){
-    return this.http.post<any>(this.Url + 'content_update.php', data);
+    return this.http.post<any>(this.Url + 'update_content.php', data);
   }
   del_content(data:any){
     return this.http.post<any>(this.Url + 'content_del.php',data)
-    
   }
-
-
   ///////////////////////////// for ppt notes////////////////////
 
   post_pptnotes(data: any) {
@@ -217,8 +213,7 @@ export class ApiService {
   
   }
   put_slider(data: any){
-    return this.http.post<any>(this.Url + ' slider_update.php', data)
-    
+    return this.http.post<any>(this.Url + 'slider_update.php', data)
   }
  
 
