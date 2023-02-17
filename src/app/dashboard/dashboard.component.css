@@ -1,6 +1,17 @@
 /*********************css for box style start*******************/
 .box{
-    width:30%;
+    /* width:30%;
+    /* width: 18.5%; */
+    /* height: 120px;
+    box-sizing: border-box;
+    float: left;
+    border-radius: 10px;
+    cursor: pointer;
+    border-left: 5px solid rgb(112, 122, 125);
+    margin: 15px 5px 0px 12px;
+    background-color: rgb(58, 62, 70); */ 
+
+    width:30.40%;
     /* width: 18.5%; */
     height: 120px;
     box-sizing: border-box;
@@ -8,8 +19,9 @@
     border-radius: 10px;
     cursor: pointer;
     border-left: 5px solid rgb(112, 122, 125);
-    margin: 15px 5px 0px 12px;
-    background-color: rgb(58, 62, 70);
+    margin:15px 10px 10px 20px;
+    background-color: rgb(58, 62, 70);  
+   
 }
 .box p {
     display: inline-grid;

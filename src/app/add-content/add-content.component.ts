@@ -14,7 +14,10 @@ export class AddContentComponent implements OnInit {
   contentForm !: FormGroup;
   course_data: any;
   topicfilter_data: any;
-  imageUrl: string = 'https://greensoft.net.in/gselearning/assets/';
+  // imageUrl: string = 'https://greensoft.net.in/gselearning/assets/';
+  imageUrl: string = '/gselearning/assets/';
+
+
   actionBtn: string = 'Save'
   contentUpdate: string = 'Add Content'
   constructor(
@@ -61,6 +64,7 @@ export class AddContentComponent implements OnInit {
     )
 
     if (this.editdata) {
+      console.log(this.editdata)
       this.actionBtn = 'Update';
       this.contentUpdate = 'Update Content';
       this.contentForm.controls['content_id'].setValue(Number(this.editdata.content_id));
@@ -108,7 +112,7 @@ export class AddContentComponent implements OnInit {
     }
   }
   Updatecontent() {
-    console.log(this.contentForm.value)
+    console.log(this.contentForm.get('content_id')?.value)
     const updatedata = new FormData();
     updatedata.append('content_id', this.contentForm.get('content_id')?.value);
     updatedata.append('content_heading', this.contentForm.get('content_heading')?.value)

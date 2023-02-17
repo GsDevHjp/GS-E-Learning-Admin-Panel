@@ -15,8 +15,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./manage-course.component.css']
 })
 export class ManageCourseComponent implements OnInit {
-      
-  imageUrl: string = 'https://greensoft.net.in/gselearning/assets/'
+  imageUrl:string = 'http://localhost/assets/upload/'      
+  // imageUrl: string = 'https://greensoft.net.in/gselearning/assets/'
   displayedColumns: string[] = ['course_id', 'course_name', 'course_desc', 'course_img', 'action'];
   dataSource = new MatTableDataSource<any>;
   coursedata: any;
