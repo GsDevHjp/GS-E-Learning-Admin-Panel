@@ -17,7 +17,8 @@ export class AddCourseComponent implements OnInit {
   image: any;
   actionBtn: string = 'Save'
   courseUpdatde: string = 'Add Course'
-  imageUrl: string = "";
+  // imageUrl: string = "";
+   imageUrl:string ="E:/GS-E-Learning-Admin-Panel/src/assets/upload/"
   files: any
 
   constructor(

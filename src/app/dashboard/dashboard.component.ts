@@ -79,7 +79,7 @@ export class DashboardComponent implements OnInit {
     // /////// for previous//////////////////
        this.api.previousGet().subscribe(
         (res:any)=>{
-          this.all_previous_question = res.data.lenght
+          this.all_previous_question = res.data.length
         }
        )
 

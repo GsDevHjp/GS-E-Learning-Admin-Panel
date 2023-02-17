@@ -11,10 +11,10 @@ export class ApiService {
   ) { }
 
   // online
-  Url:string = 'https://greensoft.net.in/gselearning/api/'
+  // Url:string = 'https://greensoft.net.in/gselearning/api/'
 
   // offline
-  // Url: string = 'http://localhost/elearning%20api/'
+  Url: string = 'http://localhost/elearning%20api/'
 
   ////////////////////// for course ////////////////////////////////////
 
