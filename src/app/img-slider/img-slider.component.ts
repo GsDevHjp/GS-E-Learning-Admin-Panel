@@ -7,6 +7,7 @@ import { ApiService } from '../services/api.service';
 import { MatSort } from '@angular/material/sort';
 import { AddSliderComponent } from '../add-slider/add-slider.component';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 
 @Component({
@@ -16,8 +17,8 @@ import { Router } from '@angular/router';
 })
 export class ImgSliderComponent implements OnInit {
 
-  imageUrl: string = 'https://greensoft.net.in/gselearning/assets/'
-  // imageUrl: string = 'http://localhost/E-Learning/src/assets/'
+  //imageUrl: string = 'https://greensoft.net.in/gselearning/assets/'
+  imageUrl: string = 'http://localhost/assets/upload/'
   // imageUrl: string = "";
   
   displayedColumns: string[] = ['slider_id', 'slider_text', 'slider_img', 'action'];
@@ -30,7 +31,8 @@ export class ImgSliderComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private service: ApiService,
-    private route:Router
+    private route:Router,
+    private toast:NgToastService
   ) { 
     this.route.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
@@ -71,7 +73,7 @@ export class ImgSliderComponent implements OnInit {
       this.service.del_slider(deldataslider).subscribe(
         (res:any) =>{
           this.route.navigate(['/home/img_slider']);
-          alert('delete successfully')
+          this.toast.success({detail:"Success",summary:'Data Delete Successfully'})
         }
       )
     }

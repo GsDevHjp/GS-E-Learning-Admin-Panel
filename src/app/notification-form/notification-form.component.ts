@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-
+import { NgToastService } from 'ng-angular-popup';
 @Component({
   selector: 'app-notification-form',
   templateUrl: './notification-form.component.html',
@@ -21,6 +21,7 @@ export class NotificationFormComponent implements OnInit {
     private FormBuilder: FormBuilder,
     private service: ApiService,
     private route: Router,
+    private toast:NgToastService,
     private matref: MatDialogRef<NotificationFormComponent>,
 
   ) {
@@ -55,13 +56,13 @@ export class NotificationFormComponent implements OnInit {
         if (this.msgForm.valid) {
           this.service.msgPost(this.msgForm.value).subscribe(
             (result: any) => {
-              alert("Data Add Successfully");
+              this.toast.success({detail:"Success",summary:'Data is Add Successfully..'})              
               this.matref.close();
               this.route.navigate(['/home/notification'])
 
             },
             (error: any) => {
-              alert("Data Not Insert")
+            this.toast.error({detail:"Error",summary:'Data is not Add..'})
             }
           )
         }
@@ -84,11 +85,11 @@ export class NotificationFormComponent implements OnInit {
       (result: any) => {
         this.route.navigate(['/home/notification'])
         console.log(result);
-        alert('Data Update Successfully')
+       this.toast.success({detail:"Success", summary:'Data Update Successfully... '})
         this.matref.close();
       },
       (error: any) => {
-        alert('Data not Update')
+        this.toast.error({detail:"Error",summary:'Data is not Update'})
       }
     )
   }

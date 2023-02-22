@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {  Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 
 @Component({
@@ -28,6 +29,7 @@ export class AddSliderComponent implements OnInit {
     private FormBuilder: FormBuilder,
     private service: ApiService,
     private route: Router,
+    private toast:NgToastService,
     private matref: MatDialogRef<AddSliderComponent>,
     @Inject(MAT_DIALOG_DATA) public editdata: any,
 
@@ -67,12 +69,12 @@ export class AddSliderComponent implements OnInit {
       (result: any) => {
         this.route.navigate(['/home/img_slider'])
         console.log(result)
-        alert('Data Insert Sucessfully')
+        this.toast.success({detail:"Success",summary:'Data Add Successfully...'})
         this.matref.close();
       },
       (error: any) => {
         console.log(error)
-        alert('Data not insert')
+        this.toast.error({detail:"Error",summary:'Data is not Add..'})
       }
     )
     }
@@ -91,11 +93,11 @@ export class AddSliderComponent implements OnInit {
             this.route.navigate(['home/img_slider']);
             console.log(res)
             this.matref.close();
-            alert(' Update successfully..')
+            this.toast.success({detail:"Success",summary:'Data is  Update Successfully..'})
           },
           error:(error:any)=>{
             console.log(error)
-            alert('data not update')
+            this.toast.error({detail:"Error",summary:'Data is not Update.'})
           }
         })
       

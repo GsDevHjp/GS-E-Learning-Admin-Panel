@@ -60,8 +60,8 @@
           <input type="file" style="width: 100%; margin-top: 10px; padding: 12px 5px;margin-left: 12px;"
             (change)="ImageUpload($event)" formControlName="content_image">
   
-          <input type="number" [ngModel]="admin_id" formControlName="admin_id_fk" placeholder="admin id fk">
-          <input type="number" formControlName="content_id"  readonly placeholder="content id">
+          <input type="number" [ngModel]="admin_id" formControlName="admin_id_fk" placeholder="admin id fk" hidden>
+          <input type="number" formControlName="content_id"  readonly placeholder="content id" hidden>
 
   
         </div>

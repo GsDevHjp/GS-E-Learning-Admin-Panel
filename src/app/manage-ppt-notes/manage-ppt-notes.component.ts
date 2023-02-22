@@ -6,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {AfterViewInit, ViewChild} from '@angular/core';
 import { AddPptNotesComponent } from '../add-ppt-notes/add-ppt-notes.component';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-manage-ppt-notes',
@@ -14,7 +15,9 @@ import { AddPptNotesComponent } from '../add-ppt-notes/add-ppt-notes.component';
 })
 export class ManagePptNotesComponent implements OnInit {
 
-  imageUrl:string = 'https://greensoft.net.in/gselearning/assets/'
+  // imageUrl:string = 'https://greensoft.net.in/gselearning/assets/'
+  imageUrl:string = 'http://localhost/assets/upload/'      
+
   // pptdata:any;
 
   displayedColumns: string[] = ['ppt_notes_id','course_id_fk','topics_id_fk', 'ppt_notes_name','ppt_file', 'action'];
@@ -27,7 +30,8 @@ export class ManagePptNotesComponent implements OnInit {
 
   constructor(
     private dialog:MatDialog,
-    private service:ApiService
+    private service:ApiService,
+    private toast:NgToastService
   ) { }
 
   ngOnInit(): void {
@@ -65,17 +69,17 @@ export class ManagePptNotesComponent implements OnInit {
     }
   }
   ppt_delect(row:any){
-    if (confirm("Are you sure to delate")) {
+    if (confirm("Are you sure to delete")) {
       const deldatappt = new FormData();
       deldatappt.append('ppt_notes_id', row.ppt_notes_id);
       this.service.del_ppt_notes(deldatappt).subscribe(
         (res: any) => {
-          alert('data delate sucessfully')
+         this.toast.success({detail:"Success",summary:'Data Delete Successfully'})
         }
       )
     }
     else {
-      alert('cancle')
+      alert('cancel')
     }
   }  
 }

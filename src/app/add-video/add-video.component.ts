@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 
 @Component({
@@ -26,6 +27,7 @@ export class AddVideoComponent implements OnInit {
     private service: ApiService,
     private FormBuilder: FormBuilder,
     private route: Router,
+    private toast:NgToastService,
     private matref: MatDialogRef<AddVideoComponent>,
   ) { }
 
@@ -78,11 +80,11 @@ export class AddVideoComponent implements OnInit {
         (result: any) => {
           this.route.navigate(['/video'])
           console.log(result)
-          alert('Data Insert Successfully')
+          this.toast.success({detail:"success",summary:'Data Add Successfully..'})
           this.matref.close();
         },
         (error: any) => {
-          alert('data not insert')
+          this.toast.error({detail:"error",summary:'Data is not Add'})
         }
       )
     }
@@ -96,10 +98,10 @@ export class AddVideoComponent implements OnInit {
     this.service.putVideo(this.addvideoForm.value).subscribe(
       (result: any) => {
         console.log(result)
-        alert('Data Update Successfully')
+        this.toast.success({detail:"Success",summary:'Data Update Successfully..'})
       },
       (error: any) => {
-        alert('Data not update')
+        this.toast.error({detail:"Error",summary:'Data is not Update'})
       }
     )
   }

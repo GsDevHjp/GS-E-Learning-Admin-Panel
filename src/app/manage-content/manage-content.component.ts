@@ -7,6 +7,7 @@ import { ApiService } from '../services/api.service';
 import { MatSort } from '@angular/material/sort';
 import { AddContentComponent } from '../add-content/add-content.component';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 
 @Component({
@@ -17,7 +18,7 @@ import { Router } from '@angular/router';
 export class ManageContentComponent implements OnInit {
   topic_count: any;
   // imageUrl: string = 'http://localhost/E-Learning/src/assets/'
-  imageUrl: string = 'assets/'
+ imageUrl: string = 'http://localhost/assets/upload/'
   displayedColumns: string[] = ['topic_id', 'course_id_fk','topics_id_fk', 'content_heading', 'englishcontent', 'hindicontent', 'urducontent', 'hinglishcontent', 'content_image', 'action'];
   dataSource = new MatTableDataSource<any>;
   content_data: any
@@ -28,7 +29,9 @@ export class ManageContentComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private service: ApiService,
-    private route:Router
+    private route:Router,
+    private toast:NgToastService
+
   ) { 
     
   }
@@ -71,12 +74,12 @@ export class ManageContentComponent implements OnInit {
       this.service.del_content(deldataslider).subscribe(
         (res:any) =>{
           this.route.navigate(['/home/manage_content']);
-          alert('delete successfully')
+          this.toast.success({detail:"success",summary:'Data Delete Successfully...'})
         }
       )
     }
     else{
-      alert('cancel')
+        alert('Cancel')
     }
 
   }

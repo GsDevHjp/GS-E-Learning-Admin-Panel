@@ -6,6 +6,8 @@ import {MatTableDataSource} from '@angular/material/table';
 import { ApiService } from '../services/api.service';
 import { MatSort } from '@angular/material/sort';
 import { AddVideoComponent } from '../add-video/add-video.component';
+import { NgToastService } from 'ng-angular-popup';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-video',
@@ -13,7 +15,7 @@ import { AddVideoComponent } from '../add-video/add-video.component';
   styleUrls: ['./video.component.css']
 })
 export class VideoComponent implements OnInit {
-  videodata:any
+  videodata:any  
   dataSource = new MatTableDataSource<any>;
   displayedColumns: string[] = ['video_id','course_id_fk', 'topics_id_fk','video_title', 'video_url', 'action'];
   
@@ -22,8 +24,14 @@ export class VideoComponent implements OnInit {
 
   constructor(
     private dialog:MatDialog,
-    private service:ApiService
-  ) { }
+    private service:ApiService,
+    private toast:NgToastService,
+    private route:Router
+  ) { 
+    this.route.routeReuseStrategy.shouldReuseRoute = function(){
+      return false;
+    }
+  }
 
   ngOnInit(): void {
     this.service.Getvideo().subscribe(
@@ -64,7 +72,7 @@ export class VideoComponent implements OnInit {
      deldatavideo.append('video_id',row.video_id);
      this.service.del_video(deldatavideo).subscribe(
       (res:any) =>{
-        alert('delete successfully')
+       this.toast.success({detail:"Success",summary:'Data Delete Successfully'})
       }
      )
     }
