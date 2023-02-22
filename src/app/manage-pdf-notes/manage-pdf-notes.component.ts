@@ -7,6 +7,7 @@ import { ApiService } from '../services/api.service';
 import { MatSort } from '@angular/material/sort';
 import { AddPdfNotesComponent } from '../add-pdf-notes/add-pdf-notes.component';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 
 @Component({
@@ -17,7 +18,9 @@ import { Router } from '@angular/router';
 export class ManagePdfNotesComponent implements OnInit {
   displayedColumns: string[] = ['pdf_id','course_id_fk','topics_id_fk', 'pdf_notes_name','pdf_file', 'action'];
   dataSource = new MatTableDataSource<any>;
-  imageUrl:string = 'https://greensoft.net.in/gselearning/assets/'
+  // imageUrl:string = 'https://greensoft.net.in/gselearning/assets/'
+  imageUrl:string = 'http://localhost/assets/upload/'      
+
   pdfdata:any;
 
   @ViewChild(MatPaginator) paginator!:MatPaginator;
@@ -27,7 +30,8 @@ export class ManagePdfNotesComponent implements OnInit {
   constructor(
     private dialog:MatDialog,
     private service:ApiService,
-    private route:Router
+    private route:Router,
+    private toast:NgToastService
   ) { }
 
   ngOnInit(): void {
@@ -61,18 +65,18 @@ export class ManagePdfNotesComponent implements OnInit {
     })
   }
   pdf_notes_delect(row:any){
-      if(confirm("are you sure to delect")){
+      if(confirm("are you sure to delete")){
         const deldatapdf = new FormData();
         deldatapdf.append ('pdf_id',row.pdf_id);
         this.service.del_pdf_notes(deldatapdf).subscribe(
           (res: any) => {
             this.route.navigate(['/home/pdf_notes']);
-            alert('data delate sucessfully')
+            this.toast.success({detail:"Success",summary:'Data delete Successfully'})
           }
         )
       }
       else {
-        alert('cancle')
+        alert('cancel')
       }
       } 
 }

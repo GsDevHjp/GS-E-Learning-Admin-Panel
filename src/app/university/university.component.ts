@@ -7,6 +7,7 @@ import { ApiService } from '../services/api.service';
 import { MatSort } from '@angular/material/sort';
 import { AddUniversityComponent } from '../add-university/add-university.component';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-university',
@@ -15,7 +16,8 @@ import { Router } from '@angular/router';
 })
 export class UniversityComponent implements OnInit {
   // imageUrl:string = 'https://greensoft.net.in/gselearning/assets/'
-  imageUrl:string = 'assets/'
+  imageUrl:string = 'http://localhost/assets/upload/'      
+
 
   displayedColumns: string[] = ['university_id', 'university_name','university_img', 'action'];
   dataSource = new MatTableDataSource<any>
@@ -26,7 +28,8 @@ export class UniversityComponent implements OnInit {
   constructor(
     private dialog:MatDialog,
     private service:ApiService,
-    private route:Router
+    private route:Router,
+    private toast:NgToastService
   ) { 
     this.route.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
@@ -60,13 +63,13 @@ export class UniversityComponent implements OnInit {
     }
   }
   delect_unsity(row:any){
-    if(confirm("are you sure delect")){
+    if(confirm("are you sure delete")){
       const deldatauniver = new FormData();
       deldatauniver.append('university_id',row.university_id),
       this.service.del_university(deldatauniver).subscribe(
       (res:any) =>{
         this.route.navigate(['/home/university']);
-         alert('data is delect successfully')
+        this.toast.success({detail:"Success",summary:'Data delete Successfully'})
       }
       )
       }

@@ -4,6 +4,7 @@ import { ApiService } from '../services/api.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { __values } from 'tslib';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-add-topic',
@@ -23,7 +24,9 @@ export class AddTopicComponent implements OnInit {
     private FormBuilder: FormBuilder,
     private matref: MatDialogRef<AddTopicComponent>,
     private service: ApiService,
-    private route: Router
+    private route: Router,
+    private toast:NgToastService,
+
   ) {
     this.route.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
@@ -72,13 +75,15 @@ export class AddTopicComponent implements OnInit {
           this.service.post_topic(formdata).subscribe(
             (result: any) => {
               console.log(result)
-              alert('Data Insert Successfully')
+              this.toast.success({detail:"Submit",summary:'Data Submit Successfully....'});
               this.matref.close();
               this.route.navigate(['/home/manage_topic'])
 
             },
             (error: any) => {
-              alert('Data not insert')
+              this.toast.error({detail:"Error",summary:'Data not Successfully....'});
+
+              
             }
           )
         }
@@ -95,7 +100,7 @@ export class AddTopicComponent implements OnInit {
       (result: any) => {
         console.log(result)
         this.route.navigate(['/home/manage_topic'])
-        alert('Data Update Successfully')
+        this.toast.success({detail:"Success",summary:'Data Update Successfully...'})
         this.matref.close();
       },
       (error: any) => {

@@ -19,7 +19,7 @@
 
 #navbar_top span{
     line-height:60px;
-    font-size: 27px;
+    font-size:30px;
     color: whitesmoke;
     font-family: cambria;
     /* letter-spacing: 1px; */
@@ -36,7 +36,7 @@
     height: 40px;
     display: block;
     padding: 5px;
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
     transition:0.4s;
     font-family:cambria;
 }
@@ -52,11 +52,11 @@
 }
 
 .menu_button span {
-    font-size: 14px;
-    line-height: 28px;
-    padding: 2px;
+    font-size:14px;
+    /* line-height: 28px; */
+    /* padding: 2px; */
     float: left;
-    letter-spacing: 1px;
+    /* letter-spacing: 1px; */
     color: whitesmoke;
 }
 

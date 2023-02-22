@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-add-ppt-notes',
@@ -16,7 +17,7 @@ export class AddPptNotesComponent implements OnInit {
   course_data: any;
   admin = 1;
   files: any
-  imageUrl: string = "";
+  imageUrl:string ="E:/GS-E-Learning-Admin-Panel/src/assets/upload/"
   topicfilter_data: any;
   actionBtn: string = 'Submit'
   pptUpdate: string = "Add PPT"
@@ -27,6 +28,7 @@ export class AddPptNotesComponent implements OnInit {
     private matref: MatDialogRef<AddPptNotesComponent>,
     private service: ApiService,
     private route: Router,
+    private toast:NgToastService
   ) {
     this.files = [];
     this.route.routeReuseStrategy.shouldReuseRoute = function () {
@@ -85,12 +87,13 @@ export class AddPptNotesComponent implements OnInit {
         (result: any) => {
           this.route.navigate(['/home/ppt_notes'])
           console.log(result)
-          alert('Data Insert Sucessfully')
+          this.toast.success({detail:"Success", summary:'Data Add successfully....'})
           this.matref.close();
         },
         (error: any) => {
           console.log(error)
-          alert('Data not insert')
+          this.toast.error({detail:"Error",summary:'Data is not Add..'})
+          
         }
       )
     }
@@ -113,11 +116,11 @@ export class AddPptNotesComponent implements OnInit {
       (result: any) => {
         this.route.navigate(['/home/ppt_notes'])
         console.log(result);
-        alert('Data Update Successfully')
+        this.toast.success({detail:"Success",summary:'Data Update successfully...'})
         this.matref.close();
       },
       (error: any) => {
-        alert('Data not Update')
+        this.toast.error({detail:"Error",summary:'Data is not Update'})
       }
     )
 
