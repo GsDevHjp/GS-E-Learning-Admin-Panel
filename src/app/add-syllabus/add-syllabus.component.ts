@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 
 @Component({
@@ -13,8 +14,10 @@ import { Router } from '@angular/router';
 export class AddSyllabusComponent implements OnInit {
 
   admin = 1;
-  imageUrl: string = "";
-  // imageUrl:string = 'https://greensoft.net.in/gselearning/assets/'
+  // imageUrl: string = "";
+  // imageUrl:string = 'https://greensoft.net.in/gselearning/assets/',
+  imageUrl:string ="E:/GS-E-Learning-Admin-Panel/src/assets/upload/"
+
   files: any
   syllabusForm !: FormGroup;
   university_data: any;
@@ -28,6 +31,7 @@ export class AddSyllabusComponent implements OnInit {
     private FormBuilder: FormBuilder,
     private service: ApiService,
     private route: Router,
+    private toast:NgToastService,
     private matref: MatDialogRef<AddSyllabusComponent>,
     @Inject(MAT_DIALOG_DATA) public editdata: any,
 
@@ -88,12 +92,12 @@ export class AddSyllabusComponent implements OnInit {
           (result: any) => {
             this.route.navigate(['/home/syllabus'])
             console.log(result)
-            alert('Data Insert Successfully')
+            this.toast.success({detail:"Successs",summary:'Data Add Successfully..'})
             this.matref.close();
           },
           (error: any) => {
             console.log(error)
-            alert('Data Not Insert')
+            this.toast.error({detail:"Error",summary:'Data is not Add....'})
           }
         )
       }
@@ -115,11 +119,12 @@ export class AddSyllabusComponent implements OnInit {
         this.route.navigate(['/home/syllabus']);
         console.log(res)
         this.matref.close();
-        alert(' Update successfully..')
+        this.toast.success({detail:"Success", summary:'Data Add Successfully..'})
       },
       error:(error:any)=>{
         console.log(error)
-        alert('data not update')
+        this.toast.error({detail:"Error",summary:'Data is not Add..'})
+       
       }
     })
   }

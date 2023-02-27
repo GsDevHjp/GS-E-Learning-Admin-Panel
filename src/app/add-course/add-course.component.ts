@@ -4,6 +4,8 @@ import { ApiService } from '../services/api.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { __values } from 'tslib';
+import { NgToastService } from 'ng-angular-popup';
+
 
 @Component({
   selector: 'app-add-course',
@@ -17,8 +19,7 @@ export class AddCourseComponent implements OnInit {
   image: any;
   actionBtn: string = 'Save'
   courseUpdatde: string = 'Add Course'
-  // imageUrl: string = "";
-   imageUrl:string ="E:/GS-E-Learning-Admin-Panel/src/assets/upload/"
+  imageUrl:string ="E:/GS-E-Learning-Admin-Panel/src/assets/upload/"
   files: any
 
   constructor(
@@ -26,6 +27,7 @@ export class AddCourseComponent implements OnInit {
     private FormBuilder: FormBuilder,
     private matref: MatDialogRef<AddCourseComponent>,
     private service: ApiService,
+    private toast: NgToastService,
     private route: Router
   ) {
     this.files = [];
@@ -67,9 +69,13 @@ export class AddCourseComponent implements OnInit {
         (result: any) => {
           this.route.navigate(['/home/manage_course']);           
           console.log(result);
-          alert("Data add successfully");
+          this.toast.success({detail:"Submit",summary:' Data Submit  Successfully.....'});
           this.matref.close();
         },
+        (error:any) =>{
+          this.toast.error({detail:"Error",summary:' Data  is  not Submit  Successfully.....'});
+
+        }        
 
       )
     }
@@ -91,7 +97,7 @@ export class AddCourseComponent implements OnInit {
       (result: any) => {
         this.route.navigate(['/home/manage_course']);           
         console.log(result);
-        alert("Data Update successfully");
+        this.toast.success({detail:"Update",summary:' Update  Successfully.....'});
         this.matref.close();
       },
       (error: any) => {

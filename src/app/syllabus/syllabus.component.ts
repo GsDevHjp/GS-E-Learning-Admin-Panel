@@ -7,6 +7,7 @@ import { ApiService } from '../services/api.service';
 import { MatSort } from '@angular/material/sort';
 import { AddSyllabusComponent } from '../add-syllabus/add-syllabus.component';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 
 @Component({
@@ -17,7 +18,9 @@ import { Router } from '@angular/router';
 export class SyllabusComponent implements OnInit {
 
   syllabus_data:any;
-  imageUrl:string = 'https://greensoft.net.in/gselearning/assets/'
+  // imageUrl:string = 'https://greensoft.net.in/gselearning/assets/'
+  imageUrl:string = 'http://localhost/assets/upload/'      
+
   
   displayedColumns: string[] = ['syllabus_id','university_id_fk', 'course_id_fk', 'syllabus_desc','syllabus_file', 'action'];
   dataSource = new MatTableDataSource<any>;
@@ -28,7 +31,8 @@ export class SyllabusComponent implements OnInit {
   constructor(
     private dialog:MatDialog,
     private service:ApiService,
-    private route:Router
+    private route:Router,
+    private toast:NgToastService
   ) { 
     this.route.routeReuseStrategy.shouldReuseRoute = function(){
       return false;
@@ -69,13 +73,13 @@ export class SyllabusComponent implements OnInit {
     })
   }
   delect_syllabus(row:any){
-      if(confirm(" Are sure you to delect")){
+      if(confirm(" Are sure you to delete")){
         const delsyllabus = new FormData();
         delsyllabus.append('syllabus_id',row.syllabus_id);
         this.service.del_syllabus(delsyllabus).subscribe(
          ( res:any) =>{
           this.route.navigate(['/home/syllabus']);
-          alert('data delect successfully')
+          this.toast.success({detail:"Success",summary:'Data Delete Successfully'})
           }
         )
       }

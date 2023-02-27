@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-add-pdf-notes',
@@ -16,8 +17,8 @@ export class AddPdfNotesComponent implements OnInit {
   course_data: any;
   admin = 1;
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-  files: any
-  imageUrl: string = "";
+  files: any  
+  imageUrl:string ="E:/GS-E-Learning-Admin-Panel/src/assets/upload/"
   topicfilter_data: any;
   updatepdf: string = 'Add PDF'
   actionBtn: string = 'Submit'
@@ -27,6 +28,7 @@ export class AddPdfNotesComponent implements OnInit {
     private FormBuilder: FormBuilder,
     private matref: MatDialogRef<AddPdfNotesComponent>,
     private service: ApiService,
+    private toast:NgToastService,
     private route: Router,
   ) {
     this.files = [];
@@ -85,12 +87,13 @@ export class AddPdfNotesComponent implements OnInit {
         (result: any) => {
           this.route.navigate(['/home/pdf_notes'])
           console.log(result)
-          alert('Data Insert Sucessfully')
+          this.toast.success({detail:"Success",summary:'Data  Add Successfully..'})
           this.matref.close();
         },
         (error: any) => {
           console.log(error)
-          alert('Data not insert')
+          this.toast.error({detail:"Error",summary:'Data is not  Add..'})
+          
         }
       )
 
@@ -114,11 +117,11 @@ export class AddPdfNotesComponent implements OnInit {
       (result: any) => {
         this.route.navigate(['/home/pdf_notes'])
         console.log(result);
-        alert('Data Update Successfully')
+        this.toast.success({detail:"Success",summary:'Data  Update Successfully...'})
         this.matref.close()
       },
       (error: any) => {
-        alert('Data Not Update')
+       this.toast.error({detail:"Error",summary:'Data not Update..'})
       }
     )
   }

@@ -7,6 +7,7 @@ import { ApiService } from '../services/api.service';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-notification',
@@ -26,7 +27,8 @@ export class NotificationComponent implements OnInit {
   constructor(
     private service:ApiService,
     private dialog:MatDialog,
-    private route:Router
+    private route:Router,
+    private toast:NgToastService
   ){ }
 
   ngOnInit(): void {
@@ -59,18 +61,19 @@ export class NotificationComponent implements OnInit {
     })
   }  
   delete_noti(row:any){
-    if (confirm("Are you sure to delate")) {
+    if (confirm("Are you sure to delete")) {
       const deldatanoti = new FormData();
       deldatanoti.append('notif_id',row.notif_id);
       this.service.del_notification(deldatanoti).subscribe(
         (res: any) => {
-          alert('data delate sucessfully')
+          this.toast.success({detail:"success",summary:'Data  Delete Successfully'})
           this.route.navigate(['/home/notification']);
         }
       )
     }
     else {
       alert('cancel')
+
     }
   }    
   editnotification(row:any){

@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-add-university',
@@ -13,11 +14,13 @@ import { Router } from '@angular/router';
 export class AddUniversityComponent implements OnInit {
   admin_id=1;
   files:any
-  imageUrl: string = "";
+  // imageUrl: string = "";
   adduniversityForm !: FormGroup;
   actionBtn: string = 'save'
   universityUpdatde: string = 'Update University'
   for_heading:string='Add University'
+  imageUrl:string ="E:/GS-E-Learning-Admin-Panel/src/assets/upload/"
+
   
 
   constructor(
@@ -25,6 +28,7 @@ export class AddUniversityComponent implements OnInit {
     private matref: MatDialogRef<AddUniversityComponent>,
     private service: ApiService,
     private route:Router,
+    private toast:NgToastService,
     @Inject(MAT_DIALOG_DATA) public editdata: any,
   ) { this.files = []; 
     this.route.routeReuseStrategy.shouldReuseRoute = function(){
@@ -62,12 +66,12 @@ export class AddUniversityComponent implements OnInit {
       (result: any) => {
         this.route.navigate(['/home/university'])
         console.log(result)
-        alert('Data Insert Sucessfully')
+       this.toast.success({detail:"Success",summary:'Data Add Successfully...'})
         this.matref.close();
       },
       (error: any) => {
         console.log(error)
-        alert('data not insert')
+        this.toast.error({detail:"Error",summary:'Data not Add..'})
       }
     )
     }
@@ -89,11 +93,11 @@ export class AddUniversityComponent implements OnInit {
       (result: any) => {
         this.route.navigate(['/home/university'])
         console.log(result);
-        alert("Data Update successfully");
+        this.toast.success({detail:"Success",summary:'Data Update Successfully...'})
         this.matref.close();
       },
       (error: any) => {
-        alert('Data not Update')
+          this.toast.error({detail:"error",summary:'Data is not Update...'})
       }
     )
   }

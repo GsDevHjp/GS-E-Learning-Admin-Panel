@@ -7,6 +7,7 @@ import { ApiService } from '../services/api.service';
 import { MatSort } from '@angular/material/sort';
 import { AddTopicComponent } from '../add-topic/add-topic.component';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-manage-topic',
@@ -23,7 +24,8 @@ export class ManageTopicComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private service:ApiService,
-    private route:Router
+    private route:Router,
+    private toast:NgToastService
 
   ) { }
 
@@ -72,13 +74,14 @@ delete_topic(row:any){
     this.service.del_topic(deldatatopic).subscribe(
       (res:any) =>{
         this.route.navigate(['/home/manage_topic']);        
-        alert('data is delete successfully')
+        this.toast.success({detail:"Delete",summary:'Data  Delete Successfully....'});
+
       }
     )
       
   }
   else{
-    alert('cancel')
+     alert('Cancel');  
   }
 
 } 

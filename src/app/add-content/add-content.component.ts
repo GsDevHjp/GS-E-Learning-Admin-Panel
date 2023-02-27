@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-add-content',
@@ -25,6 +26,7 @@ export class AddContentComponent implements OnInit {
     private matref: MatDialogRef<AddContentComponent>,
     private service: ApiService,
     private router: Router,
+    private toast:NgToastService,
     @Inject(MAT_DIALOG_DATA) public editdata: any,
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -97,12 +99,13 @@ export class AddContentComponent implements OnInit {
           (result: any) => {
             this.router.navigate(['/home/manage_content'])
             console.log(result)
-            alert('Data Isert Sucessfully')
+            this.toast.success({detail:"Success",summary:'Data Add successfully...'})
             this.matref.close();
           },
           (error: any) => {
             console.log(error)
-            alert('Data Not Insert')
+            this.toast.error({detail:"Error",summary:'Data is not Add'})
+          
           }
         )
       }
@@ -127,11 +130,11 @@ export class AddContentComponent implements OnInit {
     this.service.putContent(updatedata).subscribe({
       next:(result:any)=>{
         console.log(result)
-        alert('update successfully..')
+        this.toast.success({detail:"Success",summary:'data Update successfully.....'})
       },
       error:(error:any)=>{
         console.log(error)
-        alert('data not update')
+        this.toast.error({detail:"Error",summary:'data not Update.....'})
       }
     })
   }

@@ -63,16 +63,15 @@ table {
     width: auto;
     height: 100%;
     float: right;
-    margin-top: 5px;
-    margin-bottom: 3px;
+    margin-top: 1px;
   }
   #search_box input{
     width: 200px;
     height: 99%;
-    font-size:20px;
+    font-size:14px;
     font-family:cambria;
     border: none;
-    border-bottom: 2px solid black;
+    border-bottom: 1px solid black;
     background-color: whitesmoke;
     outline: none;
   }

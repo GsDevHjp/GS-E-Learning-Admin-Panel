@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
+import { NgModule } from '@angular/core';
+import { NgToastModule } from 'ng-angular-popup'
 
 ////////////// for ngx loader///////////
 
@@ -120,6 +121,7 @@ import { AddContentComponent } from './add-content/add-content.component';
     MatDialogModule,
     NgxUiLoaderModule,
     NgxUiLoaderRouterModule,
+    NgToastModule, 
     NgxUiLoaderHttpModule.forRoot({
       showForeground: true,
     })

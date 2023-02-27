@@ -29,12 +29,9 @@
         </mat-form-field><br>
 
         <input type="file" id="pdt_files" (change)="onFileChanged($event)" formControlName="pdf_file">
-
         <input type="number" [ngModel]="admin" formControlName="admin_id_fk" hidden>
         <input type="number" formControlName="pdf_id" hidden>
-
     </form>
-
     <button mat-button style="background-color: orangered; color: white;margin-left: 90px;" (click)="reset()">Reset</button>
     <button mat-button style="background-color: rgb(68, 110, 215); color: white;margin-left: 20px;"
         (click)="addPpt()" [disabled]="!addpdfForm.value">{{actionBtn}}</button>

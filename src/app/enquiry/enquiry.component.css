@@ -18,7 +18,6 @@ tr:nth-child(even){
   height: 40px;
 }
 
-
 #manage_course {
   width: 100%;
   height: 40px;
@@ -48,23 +47,23 @@ tr:nth-child(even){
   padding: 10px;
 }
 
-#search_box {
+#search_box{
   width: auto;
   height: 100%;
-  margin-top: 5px;
   float: right;
+  margin-top:1px ;
 }
-
-#search_box input {
-  width: 200px;
+#search_box input{
+  width:200px;
   height: 99%;
-  font-size:20px;
+  font-size:14px;
   font-family:cambria;
   border: none;
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid black;
   background-color: whitesmoke;
   outline: none;
 }
+
 
 textarea {
   border: none;
